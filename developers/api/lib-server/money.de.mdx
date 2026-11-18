@@ -5,7 +5,7 @@ icon: Wallet
 ---
 
 ```ts title="TypeScript"
-import { money, banking, billing } from "@aifivem/lib/server";
+import { money, banking, billing } from "@aicore8/lib/server";
 ```
 
 `money` ist jeder Kontostand auf dem Server: die Konten eines geladenen Spielers, das gemeinsame Konto eines Jobs oder einer Gang, ein Transfer, der Geld in einer Transaktion bewegt, und das Ledger. Ein Charakter, der **nicht** verbunden ist, geht über [`characters`](/de/docs/developers/api/lib-server/characters#charactersaddmoney-charactersremovemoney-and-characterssetmoney). `banking` und `billing` sind die Layer für die Bank- und Rechnungs-Scripts des Servers.
@@ -44,7 +44,7 @@ local balance = aiLib.money.get(source, account)
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { money, notify } from "@aifivem/lib/server";
+import { money, notify } from "@aicore8/lib/server";
 
 export function tellBalance(source: number): void {
   const bank = money.get(source, "bank");
@@ -98,8 +98,8 @@ local ok = aiLib.money.set(source, account, amount, reason)
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { money, onClientCallback } from "@aifivem/lib/server";
-import { fail } from "@aifivem/lib/shared";
+import { money, onClientCallback } from "@aicore8/lib/server";
+import { fail } from "@aicore8/lib/shared";
 
 onClientCallback("myshop:buyTools", { lock: true }, (source) => {
   if (!money.remove(source, "cash", 150, "shop:tools")) return fail("NOT_ENOUGH_CASH");
@@ -175,7 +175,7 @@ local ok = aiLib.money.sharedRemove(type, id, account, amount, reason)
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { money } from "@aifivem/lib/server";
+import { money } from "@aicore8/lib/server";
 
 /** Ein Stadtauftrag, den die Werkstatt verdient, und die Gebühr, die sie für Teile zahlt. */
 export function contractDone(job: string, pay: number, parts: number): boolean {
@@ -224,8 +224,8 @@ local ok = aiLib.money.transfer(from, to, amount, reason, fee)
 #### Beispiel
 
 ```ts
-import { onClientCallback, money, nearestPlayerTo, notify } from "@aifivem/lib/server";
-import { fail, oneArg, readInt } from "@aifivem/lib/shared";
+import { onClientCallback, money, nearestPlayerTo, notify } from "@aicore8/lib/server";
+import { fail, oneArg, readInt } from "@aicore8/lib/shared";
 
 onClientCallback("my-cash:give", { args: oneArg((v) => readInt(v, 1, 100_000)), lock: true }, (source, amount) => {
   const target = nearestPlayerTo(source, 2);
@@ -269,7 +269,7 @@ Eine [LedgerPage](/de/docs/developers/api/types#ledgerpage): `rows` und das `nex
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { money } from "@aifivem/lib/server";
+import { money } from "@aicore8/lib/server";
 
 /** Die letzten 20 Bankzeilen eines gespeicherten Charakters. */
 export async function statement(charId: number) {
@@ -413,8 +413,8 @@ local ok = aiLib.billing.send(bill)
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { billing, nearestPlayerTo, online } from "@aifivem/lib/server";
-import { fail } from "@aifivem/lib/shared";
+import { billing, nearestPlayerTo, online } from "@aicore8/lib/server";
+import { fail } from "@aicore8/lib/shared";
 
 function fine(officer: number, amount: number) {
   if (!online.onDutyIn(officer, ["police"])) return fail("NOT_ON_DUTY");

@@ -1,4 +1,4 @@
-# Issues and pull requests are mirrored to the Discord forums: see aifivem/.github.
+# Issues and pull requests are mirrored to the Discord forums: see aicore8/.github.
 name: community
 
 on:
@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   community:
-    uses: aifivem/.github/.github/workflows/community.yml@main
+    uses: aicore8/.github/.github/workflows/community.yml@main
     # Only the two forum webhooks: never every secret on a pull_request_target run.
     secrets:
       DISCORD_BUG_FORUM_WEBHOOK: ${{ secrets.DISCORD_BUG_FORUM_WEBHOOK }}

@@ -16,7 +16,7 @@ Admin panelinin gösterge panelinde bir **Recommended scripts** bölümü var: b
   - yakıt, kapılar, garajlar, telefon ve polis ihbarları (`dispatch.alert`) da aynı şekilde kendi katmanlarından geçer.
 - **Kategorisinin bir katmanı varsa orada bir adaptörü vardır.** Envanter, araç anahtarı, kıyafet, yakıt, kapı kilidi, garaj, telefon, ihbar, banka, fatura ya da sağlık script’inin o katmanda bir adaptöre ihtiyacı vardır; diğer script’ler ona böyle ulaşır. Katmanın zaten okuduğu bir API’yi cevaplayan script’e daha azı yeter: LegacyFuel tarzı client export’ları `GetFuel(vehicle)` / `SetFuel(vehicle, level)` olan bir yakıt script’i, yakıt katmanının listesinde tek bir satırdır.
 
-Katmanlar ve destekledikleri script’ler: [Katmanlar ve köprü](/tr/docs/developers/layers), [Uyumluluk](/tr/docs/compatibility) ve sunucu deposunun [`docs/compat/`](https://github.com/aifivem/aicore-server/tree/main/docs/compat) klasöründe her katman için bir not.
+Katmanlar ve destekledikleri script’ler: [Katmanlar ve köprü](/tr/docs/developers/layers), [Uyumluluk](/tr/docs/compatibility) ve sunucu deposunun [`docs/compat/`](https://github.com/aicore8/aicore-server/tree/main/docs/compat) klasöründe her katman için bir not.
 
 ## Listeye girmek
 
@@ -25,7 +25,7 @@ Katmanlar ve destekledikleri script’ler: [Katmanlar ve köprü](/tr/docs/devel
 
 ### Kaydı ekle
 
-[aifivem/ai-core](https://github.com/aifivem/ai-core) deposunu fork’la ve `resource/server/recommendations/index.ts` dosyasındaki `RECOMMENDATIONS` listesine bir kayıt ekle:
+[aicore8/ai-core](https://github.com/aicore8/ai-core) deposunu fork’la ve `resource/server/recommendations/index.ts` dosyasındaki `RECOMMENDATIONS` listesine bir kayıt ekle:
 
 ```ts
 {
@@ -73,7 +73,7 @@ Aynı pull request’te:
 - katmanın `adapters/` klasöründeki adaptör dosyası: `resource/server/<layer>/adapters/<resource>.ts`, script’in sadece client API’si varsa ayrıca `resource/client/<layer>/adapters/<resource>.ts`. Benzer bir script’in adaptörünü kopyala;
 - katmanın adaptör listesindeki satırı: `resource/server/<layer>/registry.ts`, ya da `registry.ts`’si olmayan katmanlarda (phone, medical, prison, world) katmanın `index.ts` dosyası.
 
-Sonra [aifivem/aicore-server](https://github.com/aifivem/aicore-server) deposuna, script’i katmanın notu `docs/compat/<layer>.md` dosyasına (örneğin `vehicle-keys.md`, `phone.md`) ekleyen ikinci bir pull request aç: test edilen sürüm, durum ve bilinen sınırlar.
+Sonra [aicore8/aicore-server](https://github.com/aicore8/aicore-server) deposuna, script’i katmanın notu `docs/compat/<layer>.md` dosyasına (örneğin `vehicle-keys.md`, `phone.md`) ekleyen ikinci bir pull request aç: test edilen sürüm, durum ve bilinen sınırlar.
 
 </Step>
 <Step>

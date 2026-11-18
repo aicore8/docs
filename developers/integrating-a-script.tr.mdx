@@ -41,10 +41,10 @@ server_script 'server.lua'
 ### TypeScript
 
 ```ts title="server.ts"
-import { inventory, onClientCallback } from "@aifivem/lib/server";
+import { inventory, onClientCallback } from "@aicore8/lib/server";
 ```
 
-`@aifivem/lib` npm'den gelir; AI Core workspace'inin dışındaki bir resource `bun install @aifivem/lib @aifivem/shared` ile kurar. Derleme adımı olmayan düz bir JavaScript resource'u `@ai-lib/dist/server.js` dosyasını yükler ve aynı global `aiLib`'i kullanır.
+`@aicore8/lib` npm'den gelir; AI Core workspace'inin dışındaki bir resource `bun install @aicore8/lib @aicore8/shared` ile kurar. Derleme adımı olmayan düz bir JavaScript resource'u `@ai-lib/dist/server.js` dosyasını yükler ve aynı global `aiLib`'i kullanır.
 
 </Step>
 <Step>
@@ -176,7 +176,7 @@ Bkz. [Veritabanı](/tr/docs/developers/database).
 
 ## Yayınlamadan önce
 
-- `ai-lib` (ya da `@aifivem/lib`) yüklü, manifest'te `dependency 'ai-lib'` var.
+- `ai-lib` (ya da `@aicore8/lib`) yüklü, manifest'te `dependency 'ai-lib'` var.
 - Eşya, anahtar, para, meslek, telefon, ihbar, kıyafet, yakıt, kapı, garaj ve hapishane için başka bir script'in export'u kullanılmıyor.
 - AI Core'un `ai_*` tablolarına sorgu yok, başka bir script'in `data/*.json` dosyası okunmuyor.
 - Client'tan gelen her istek hız sınırlı ve sunucuda kontrol ediliyor.

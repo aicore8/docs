@@ -41,10 +41,10 @@ server_script 'server.lua'
 ### TypeScript
 
 ```ts title="server.ts"
-import { inventory, onClientCallback } from "@aifivem/lib/server";
+import { inventory, onClientCallback } from "@aicore8/lib/server";
 ```
 
-`@aifivem/lib` берётся из npm: ресурс вне рабочего пространства AI Core ставит её через `bun install @aifivem/lib @aifivem/shared`. Обычный JavaScript-ресурс без сборки подключает `@ai-lib/dist/server.js` и использует тот же глобальный `aiLib`.
+`@aicore8/lib` берётся из npm: ресурс вне рабочего пространства AI Core ставит её через `bun install @aicore8/lib @aicore8/shared`. Обычный JavaScript-ресурс без сборки подключает `@ai-lib/dist/server.js` и использует тот же глобальный `aiLib`.
 
 </Step>
 <Step>
@@ -176,7 +176,7 @@ add_convar_permission my-resource read mysql_connection_string
 
 ## Перед релизом
 
-- `ai-lib` (или `@aifivem/lib`) подключена, в манифесте есть `dependency 'ai-lib'`.
+- `ai-lib` (или `@aicore8/lib`) подключена, в манифесте есть `dependency 'ai-lib'`.
 - Нет экспортов другого скрипта для предметов, ключей, денег, работ, телефона, вызовов, одежды, топлива, дверей, гаражей и тюрьмы.
 - Нет запросов к таблицам `ai_*` AI Core и нет чтения `data/*.json` другого скрипта.
 - У каждого запроса клиента есть ограничение частоты и проверка на сервере.

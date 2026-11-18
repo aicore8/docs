@@ -13,7 +13,7 @@ Bu sayfa iki okuyucu için yazıldı: sen ve sayfayı gösterdiğin yapay zekâ 
 Sunucu veri klasörünü kodlama ajanında aç ve kapsamı doldurup şunu yapıştır:
 
 ```text
-Bu AI Core sunucusundaki scriptleri https://aifivem.com/docs/update-a-script.md sayfasına göre güncelle.
+Bu AI Core sunucusundaki scriptleri https://aicore8.com/docs/update-a-script.md sayfasına göre güncelle.
 Bu klasörde .claude/skills/aicore-script-update/ varsa SKILL.md dosyasını ve references klasörünü oku: aynı süreç.
 
 Kapsam: <güncel olmayan her ai-* scripti ve paket | ai-inventory ai-garages | C:\yol\yeni-surumler içindeki üçüncü parti scriptler>
@@ -35,7 +35,7 @@ Kapsam: <güncel olmayan her ai-* scripti ve paket | ai-inventory ai-garages | C
 ```
 
 <Callout>
-Her AI Core sunucu klasöründe bu süreç `.claude/skills/aicore-script-update/` içinde bir proje skill’i olarak bulunur: txAdmin recipe’si onu kurallar, `tools/`, `docs/compat/`, `CLAUDE.md` ve `AGENTS.md` ile birlikte, tıpkı elle kurulumdaki gibi kurar. "Scriptlerimi güncelle" ya da "yeni sürüm çıktı" dediğinde Claude Code onu kendisi yükler; diğer ajanlar onu `AGENTS.md` üzerinden bulur. Eski bir recipe ile kurulan bir sunucuda bu dosyalar olmayabilir: onları [Elle kurulum](/tr/docs/installation#elle-kurulum) bölümündeki gibi [aicore-server](https://github.com/aifivem/aicore-server) deposundan sunucu klasörüne indir, kendi cfg dosyalarını koru.
+Her AI Core sunucu klasöründe bu süreç `.claude/skills/aicore-script-update/` içinde bir proje skill’i olarak bulunur: txAdmin recipe’si onu kurallar, `tools/`, `docs/compat/`, `CLAUDE.md` ve `AGENTS.md` ile birlikte, tıpkı elle kurulumdaki gibi kurar. "Scriptlerimi güncelle" ya da "yeni sürüm çıktı" dediğinde Claude Code onu kendisi yükler; diğer ajanlar onu `AGENTS.md` üzerinden bulur. Eski bir recipe ile kurulan bir sunucuda bu dosyalar olmayabilir: onları [Elle kurulum](/tr/docs/installation#elle-kurulum) bölümündeki gibi [aicore-server](https://github.com/aicore8/aicore-server) deposundan sunucu klasörüne indir, kendi cfg dosyalarını koru.
 </Callout>
 
 ## Sende kalanlar
@@ -53,11 +53,11 @@ Her AI Core sunucu klasöründe bu süreç `.claude/skills/aicore-script-update/
 
 | Script | Yeni sürüm | Senin vereceğin |
 | --- | --- | --- |
-| `resources/[ai]/` içindeki `ai-*` resource’ları (ai-core, ai-lib, ai-mysql dahil) | `package.json` dosyasında adı geçen deponun GitHub release’i (`"repository": "github:aifivem/<name>"`) | Hiçbir şey |
-| `packages/` içindeki `@aifivem/*` paketleri (sadece geliştirme kurulumu) | npm (`npm view @aifivem/<pkg> version`) | Hiçbir şey |
+| `resources/[ai]/` içindeki `ai-*` resource’ları (ai-core, ai-lib, ai-mysql dahil) | `package.json` dosyasında adı geçen deponun GitHub release’i (`"repository": "github:aicore8/<name>"`) | Hiçbir şey |
+| `packages/` içindeki `@aicore8/*` paketleri (sadece geliştirme kurulumu) | npm (`npm view @aicore8/<pkg> version`) | Hiçbir şey |
 | Diğer her resource (genelde `resources/[standalone]/` içinde) | Satıcı | Yeni klasör ya da zip |
 
-Recipe ile kurulan bir sunucu her `ai-*` script’ini release zip’i olarak almıştır: her script kendi klasöründe build edilir ve `@aifivem/*` paketlerini npm’den alır. Bir geliştirme kurulumunda (`bun run setup`) `packages/` vardır ve her script sunucu klasöründen build edilir.
+Recipe ile kurulan bir sunucu her `ai-*` script’ini release zip’i olarak almıştır: her script kendi klasöründe build edilir ve `@aicore8/*` paketlerini npm’den alır. Bir geliştirme kurulumunda (`bun run setup`) `packages/` vardır ve her script sunucu klasöründen build edilir.
 
 ai-core, GitHub deposu olan ve çalışan her scripti kontrol eder (her script için 6 saatte bir) ve konsola `<name> <current> is outdated: <latest> is out (<url>)` yazar; aynı liste admin dashboard’unda da var. Güncelleme kontrolleri ve atlanan scriptler [admin panelinde](/tr/docs/admin-panel) **General** altında ayarlanır (ai-core’un `data/settings.json` dosyasında `updates.check`, `updates.ignore`).
 
@@ -143,7 +143,7 @@ unzip -q update/<name>/old/*.zip -d update/<name>/old/x
 ```
 
 - **Yeni upstream**, `<name>-<tag>.zip` release zip’idir: build ve kaynak, en üst klasör `<name>/`. Kasım 2026’dan önceki release’ler sadece build’i ekler; o zaman tag’in kaynağını al (en üst klasör `<owner>-<name>-<sha>/`).
-- Release zip’inin `package.json` dosyası `@aifivem/*` paketlerini sabitler (`workspace:*` yerine `^x.y.z`) ve `"workspaces": ["web"]` ekler. Bu senin değişikliğin değildir: bu alanları üç yönlü karşılaştırmanın dışında tut ve sunucunun biçimini koru (recipe kurulumu: zip’inki; geliştirme kurulumu: `workspace:*`, `workspaces` yok).
+- Release zip’inin `package.json` dosyası `@aicore8/*` paketlerini sabitler (`workspace:*` yerine `^x.y.z`) ve `"workspaces": ["web"]` ekler. Bu senin değişikliğin değildir: bu alanları üç yönlü karşılaştırmanın dışında tut ve sunucunun biçimini koru (recipe kurulumu: zip’inki; geliştirme kurulumu: `workspace:*`, `workspaces` yok).
 - **Eski upstream**, sunucunun çalıştırdığı sürümün tag’idir (tag adlandırmasını `gh release list --repo <owner>/<name>` ile gör). Her zaman indirilebilir, yani üç yönlü karşılaştırmanın tabanı her zaman vardır.
 - Bu klasörlerdeki hiçbir şey çalıştırılmaz, kurulmaz, build edilmez.
 
@@ -166,7 +166,7 @@ unzip -q update/<name>/old/*.zip -d update/<name>/old/x
 | Dosya | Kural |
 | --- | --- |
 | `resource/**`, `web/src/**`, `bridge/**`, `sql/**`, Lua ve diğer kaynak dosyalar | Üç yönlü. Kodu taşınan ya da sözleşmesi değişen bir yerel değişiklik yeni koda uyarlanır; yeri kalmayan raporlanır. |
-| `package.json` | Yeni upstream, artı hâlâ anlamlı olan yerel eklemeler; `@aifivem/*` sürümleri ve `workspaces` sunucunun biçiminde kalır (indirme adımına bak). `version` yeni release’in sürümünde biter, yoksa güncelleme kontrolü uyarmaya devam eder. |
+| `package.json` | Yeni upstream, artı hâlâ anlamlı olan yerel eklemeler; `@aicore8/*` sürümleri ve `workspaces` sunucunun biçiminde kalır (indirme adımına bak). `version` yeni release’in sürümünde biter, yoksa güncelleme kontrolü uyarmaya devam eder. |
 | `dist/`, `fxmanifest.lua`, `resource/server/tables.ts`, `data/schemas/*.schema.json` | Yeniyi al; build onları yeniden üretir. |
 | `data/<file>.json` (panel içeriği) | Bizimkini koru (aşağıya bak). |
 | `data/secrets.json`, `data/*.json.bak` | Yedekten dokunmadan geri koy. |

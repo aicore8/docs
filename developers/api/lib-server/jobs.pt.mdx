@@ -5,7 +5,7 @@ icon: Siren
 ---
 
 ```ts title="TypeScript"
-import { jobs, dispatch, prison, mdt, ems, medical, stress, needs, definitions, isPrimeTime } from "@aifivem/lib/server";
+import { jobs, dispatch, prison, mdt, ems, medical, stress, needs, definitions, isPrimeTime } from "@aicore8/lib/server";
 ```
 
 O `jobs` e o `definitions` são o próprio ai-core: os empregos e gangues de uma personagem, e as definições de empregos do servidor. Tudo o mais aqui passa por uma das camadas do ai-core, onde responde o script que o servidor usa para essa tarefa (um sistema de alertas, uma prisão, um MDT, um script de morte, um HUD). O seu script continua a funcionar quando o proprietário o troca. Enquanto nenhum desses scripts correr, essas chamadas falham em silêncio (`false`, `0`, `null`).
@@ -37,7 +37,7 @@ Um [JobMembership](/pt/docs/developers/api/types#jobmembership) (`{ job, grade }
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { jobs } from "@aifivem/lib/server";
+import { jobs } from "@aicore8/lib/server";
 
 export function isOfficer(source: number): boolean {
   return jobs.current(source)?.job === "police";
@@ -132,7 +132,7 @@ local ok = aiLib.jobs.set(source, job, grade)
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { jobs, notify } from "@aifivem/lib/server";
+import { jobs, notify } from "@aicore8/lib/server";
 
 export function hire(source: number, job: string): void {
   if (!jobs.set(source, job, 0)) return notify(source, "Não foi possível contratar", "error");
@@ -305,7 +305,7 @@ O tipo é [`DispatchAlert`](/pt/docs/developers/api/types#dispatchalert).
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { dispatch, coordsOf, createLocale } from "@aifivem/lib/server";
+import { dispatch, coordsOf, createLocale } from "@aicore8/lib/server";
 
 const Locale = createLocale();
 
@@ -858,7 +858,7 @@ O `registerJob` responde [ActionResult](/pt/docs/developers/api/types#actionresu
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { definitions } from "@aifivem/lib/server";
+import { definitions } from "@aicore8/lib/server";
 
 // Uma vez no arranque: o emprego existe enquanto este resource correr.
 const result = definitions.registerJob("garbage", {

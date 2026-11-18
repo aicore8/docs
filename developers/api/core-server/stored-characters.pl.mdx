@@ -48,7 +48,7 @@ Nic. Odpowiedź przychodzi w `done`.
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters } from "@aifivem/lib/server";
+import { characters } from "@aicore8/lib/server";
 
 // Lib zawija callback w Promise.
 export async function fine(citizenid: string, amount: number): Promise<boolean> {
@@ -108,7 +108,7 @@ Nic. `done` dostaje [OfflineCharacter](/pl/docs/developers/api/types#offlinechar
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters } from "@aifivem/lib/server";
+import { characters } from "@aicore8/lib/server";
 
 export async function describe(charId: number): Promise<string> {
   const c = await characters.get(charId);
@@ -162,8 +162,8 @@ Nic. `done` dostaje [CharacterSearchPage](/pl/docs/developers/api/types#characte
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters, onClientCallback } from "@aifivem/lib/server";
-import { oneArg, readText } from "@aifivem/lib/shared";
+import { characters, onClientCallback } from "@aicore8/lib/server";
+import { oneArg, readText } from "@aicore8/lib/shared";
 
 onClientCallback(
   "myscript:searchPeople",
@@ -218,7 +218,7 @@ Nic. `done` dostaje tablicę [StoredCharacter](/pl/docs/developers/api/types#sto
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters, resourceExport } from "@aifivem/lib/server";
+import { characters, resourceExport } from "@aicore8/lib/server";
 
 const core = resourceExport("ai-core");
 
@@ -278,7 +278,7 @@ Nic. `done` dostaje [MembersPage](/pl/docs/developers/api/types#memberspage): cz
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters } from "@aifivem/lib/server";
+import { characters } from "@aicore8/lib/server";
 
 /** Wszyscy członkowie pracy, strona po stronie. */
 export async function roster(job: string) {
@@ -351,7 +351,7 @@ Nic. `done` dostaje `{ ok: true }` albo `{ ok: false, error }` z kluczem języko
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters } from "@aifivem/lib/server";
+import { characters } from "@aicore8/lib/server";
 
 /** Wypłaca sprzedaż, czy sprzedający jest online, czy nie. */
 export async function payOut(charId: number, amount: number): Promise<boolean> {
@@ -407,7 +407,7 @@ Nic. `done` dostaje `{ ok: true }` albo `{ ok: false, error }` z kluczem języko
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters } from "@aifivem/lib/server";
+import { characters } from "@aicore8/lib/server";
 
 /** Zwalnia członka, online albo nie. */
 export async function fire(charId: number, job: string): Promise<boolean> {
@@ -490,7 +490,7 @@ Nic. `done` dostaje `{ ok: true }` albo `{ ok: false, error }` przy nieznanej po
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters } from "@aifivem/lib/server";
+import { characters } from "@aicore8/lib/server";
 
 await characters.setMeta(12, "myscript_licence", { kind: "drive", since: Date.now() });
 await characters.setMeta(12, "myscript_licence", null); // zabiera ją
@@ -542,7 +542,7 @@ Nic. `done` dostaje `{ ok: true }` albo `{ ok: false, error }` z kluczem języko
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters } from "@aifivem/lib/server";
+import { characters } from "@aicore8/lib/server";
 
 const result = await characters.setInfo(12, { lastname: "Doe-Smith", height: 174 });
 if (!result.ok) console.log(`zmiana nazwiska odrzucona: ${result.error}`);

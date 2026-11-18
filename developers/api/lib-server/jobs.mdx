@@ -5,7 +5,7 @@ icon: Siren
 ---
 
 ```ts title="TypeScript"
-import { jobs, dispatch, prison, mdt, ems, medical, stress, needs, definitions, isPrimeTime } from "@aifivem/lib/server";
+import { jobs, dispatch, prison, mdt, ems, medical, stress, needs, definitions, isPrimeTime } from "@aicore8/lib/server";
 ```
 
 `jobs` and `definitions` are ai-core itself: the jobs and gangs of a character, and the job definitions of the server. Everything else here goes through one of ai-core's layers, where the script the server runs for that job (an alert system, a prison, an MDT, a death script, a HUD) answers. Your script keeps working when the owner swaps it. While no such script runs, those calls fail quietly (`false`, `0`, `null`).
@@ -37,7 +37,7 @@ A [JobMembership](/docs/developers/api/types#jobmembership) (`{ job, grade }`), 
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { jobs } from "@aifivem/lib/server";
+import { jobs } from "@aicore8/lib/server";
 
 export function isOfficer(source: number): boolean {
   return jobs.current(source)?.job === "police";
@@ -132,7 +132,7 @@ local ok = aiLib.jobs.set(source, job, grade)
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { jobs, notify } from "@aifivem/lib/server";
+import { jobs, notify } from "@aicore8/lib/server";
 
 export function hire(source: number, job: string): void {
   if (!jobs.set(source, job, 0)) return notify(source, "Could not hire you", "error");
@@ -305,7 +305,7 @@ The type is [`DispatchAlert`](/docs/developers/api/types#dispatchalert).
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { dispatch, coordsOf, createLocale } from "@aifivem/lib/server";
+import { dispatch, coordsOf, createLocale } from "@aicore8/lib/server";
 
 const Locale = createLocale();
 
@@ -858,7 +858,7 @@ local ok = aiLib.definitions.removeJob(name)
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { definitions } from "@aifivem/lib/server";
+import { definitions } from "@aicore8/lib/server";
 
 // Once at start: the job exists while this resource runs.
 const result = definitions.registerJob("garbage", {

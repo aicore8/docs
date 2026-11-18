@@ -41,10 +41,10 @@ server_script 'server.lua'
 ### TypeScript
 
 ```ts title="server.ts"
-import { inventory, onClientCallback } from "@aifivem/lib/server";
+import { inventory, onClientCallback } from "@aicore8/lib/server";
 ```
 
-`@aifivem/lib` viene de npm: un resource fuera del workspace de AI Core la instala con `bun install @aifivem/lib @aifivem/shared`. Un resource de JavaScript simple, sin paso de build, carga `@ai-lib/dist/server.js` y usa el mismo `aiLib` global.
+`@aicore8/lib` viene de npm: un resource fuera del workspace de AI Core la instala con `bun install @aicore8/lib @aicore8/shared`. Un resource de JavaScript simple, sin paso de build, carga `@ai-lib/dist/server.js` y usa el mismo `aiLib` global.
 
 </Step>
 <Step>
@@ -176,7 +176,7 @@ Ver [La base de datos](/es/docs/developers/database).
 
 ## Antes de publicar
 
-- `ai-lib` (o `@aifivem/lib`) cargada, `dependency 'ai-lib'` en el manifest.
+- `ai-lib` (o `@aicore8/lib`) cargada, `dependency 'ai-lib'` en el manifest.
 - Ningún export de otro script para objetos, llaves, dinero, trabajos, teléfono, avisos, ropa, combustible, puertas, garajes o la cárcel.
 - Ninguna consulta contra una tabla `ai_*` de AI Core, y ninguna lectura del `data/*.json` de otro script.
 - Cada petición del cliente con límite de frecuencia y comprobada en el servidor.

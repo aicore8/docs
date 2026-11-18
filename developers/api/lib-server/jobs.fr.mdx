@@ -5,7 +5,7 @@ icon: Siren
 ---
 
 ```ts title="TypeScript"
-import { jobs, dispatch, prison, mdt, ems, medical, stress, needs, definitions, isPrimeTime } from "@aifivem/lib/server";
+import { jobs, dispatch, prison, mdt, ems, medical, stress, needs, definitions, isPrimeTime } from "@aicore8/lib/server";
 ```
 
 `jobs` et `definitions` sont ai-core lui-même : les métiers et gangs d'un personnage, et les définitions de métiers du serveur. Tout le reste ici passe par une des couches d'ai-core, où répond le script que le serveur fait tourner pour cette tâche (un système d'alertes, une prison, un MDT, un script de mort, un HUD). Votre script continue de fonctionner quand le propriétaire le remplace. Tant qu'aucun script de ce genre ne tourne, ces appels échouent silencieusement (`false`, `0`, `null`).
@@ -37,7 +37,7 @@ Un [JobMembership](/fr/docs/developers/api/types#jobmembership) (`{ job, grade }
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { jobs } from "@aifivem/lib/server";
+import { jobs } from "@aicore8/lib/server";
 
 export function isOfficer(source: number): boolean {
   return jobs.current(source)?.job === "police";
@@ -132,7 +132,7 @@ local ok = aiLib.jobs.set(source, job, grade)
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { jobs, notify } from "@aifivem/lib/server";
+import { jobs, notify } from "@aicore8/lib/server";
 
 export function hire(source: number, job: string): void {
   if (!jobs.set(source, job, 0)) return notify(source, "Embauche impossible", "error");
@@ -305,7 +305,7 @@ Le type est [`DispatchAlert`](/fr/docs/developers/api/types#dispatchalert).
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { dispatch, coordsOf, createLocale } from "@aifivem/lib/server";
+import { dispatch, coordsOf, createLocale } from "@aicore8/lib/server";
 
 const Locale = createLocale();
 
@@ -858,7 +858,7 @@ local ok = aiLib.definitions.removeJob(name)
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { definitions } from "@aifivem/lib/server";
+import { definitions } from "@aicore8/lib/server";
 
 // Une fois au démarrage : le métier existe tant que cette resource tourne.
 const result = definitions.registerJob("garbage", {

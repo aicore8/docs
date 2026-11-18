@@ -16,7 +16,7 @@ Le tableau de bord du panneau d’administration a une section **Recommended scr
   - le carburant, les portes, les garages, le téléphone et les alertes police (`dispatch.alert`) passent de la même façon par leurs couches.
 - **Si sa catégorie a une couche, il y a un adaptateur.** Un script d’inventaire, de clés de véhicule, de vêtements, de carburant, de serrures de porte, de garage, de téléphone, de dispatch, de banque, de factures ou médical a besoin d’un adaptateur dans cette couche, pour que les autres scripts l’atteignent. Un script qui répond à une API que la couche lit déjà en demande moins : un script de carburant avec les exports client façon LegacyFuel `GetFuel(vehicle)` / `SetFuel(vehicle, level)` est une ligne dans la liste de la couche carburant.
 
-Les couches et les scripts qu’elles prennent en charge : [Couches et pont](/fr/docs/developers/layers), [Compatibilité](/fr/docs/compatibility), et une note par couche dans [`docs/compat/`](https://github.com/aifivem/aicore-server/tree/main/docs/compat) du dépôt du serveur.
+Les couches et les scripts qu’elles prennent en charge : [Couches et pont](/fr/docs/developers/layers), [Compatibilité](/fr/docs/compatibility), et une note par couche dans [`docs/compat/`](https://github.com/aicore8/aicore-server/tree/main/docs/compat) du dépôt du serveur.
 
 ## Être listé
 
@@ -25,7 +25,7 @@ Les couches et les scripts qu’elles prennent en charge : [Couches et pont](/fr
 
 ### Ajouter l’entrée
 
-Forkez [aifivem/ai-core](https://github.com/aifivem/ai-core) et ajoutez une entrée à la liste `RECOMMENDATIONS` dans `resource/server/recommendations/index.ts` :
+Forkez [aicore8/ai-core](https://github.com/aicore8/ai-core) et ajoutez une entrée à la liste `RECOMMENDATIONS` dans `resource/server/recommendations/index.ts` :
 
 ```ts
 {
@@ -73,7 +73,7 @@ Dans la même pull request :
 - le fichier d’adaptateur dans le dossier `adapters/` de la couche : `resource/server/<layer>/adapters/<resource>.ts`, plus `resource/client/<layer>/adapters/<resource>.ts` quand le script n’a qu’une API client. Copiez l’adaptateur d’un script semblable ;
 - sa ligne dans la liste des adaptateurs de la couche : `resource/server/<layer>/registry.ts`, ou le `index.ts` de la couche quand elle n’a pas de `registry.ts` (phone, medical, prison, world).
 
-Ouvrez ensuite une deuxième pull request sur [aifivem/aicore-server](https://github.com/aifivem/aicore-server) qui ajoute le script à la note de la couche `docs/compat/<layer>.md` (par exemple `vehicle-keys.md`, `phone.md`) : version testée, statut et limites connues.
+Ouvrez ensuite une deuxième pull request sur [aicore8/aicore-server](https://github.com/aicore8/aicore-server) qui ajoute le script à la note de la couche `docs/compat/<layer>.md` (par exemple `vehicle-keys.md`, `phone.md`) : version testée, statut et limites connues.
 
 </Step>
 <Step>

@@ -10,10 +10,10 @@ Woher ein Typ kommt:
 
 | Paket | Import | Typen |
 | --- | --- | --- |
-| `@aifivem/shared` | `import type { AiPlayerData } from "@aifivem/shared";` | Alles auf dieser Seite, sofern die Überschrift nichts anderes sagt. |
-| `@aifivem/lib/shared` | `import type { Vec3 } from "@aifivem/lib/shared";` | `Vec3`, `Vec4`, `AccessRule`, `BlipStyle`, `ZoneShape`, `VehicleProps`, `VehicleSetup`, `PlacePed`. |
-| `@aifivem/lib/client` | `import type { ProgressOptions } from "@aifivem/lib/client";` | `ProgressOptions`. |
-| `@aifivem/lib/server` | `import type { ProgressForOptions } from "@aifivem/lib/server";` | `ProgressForOptions`. |
+| `@aicore8/shared` | `import type { AiPlayerData } from "@aicore8/shared";` | Alles auf dieser Seite, sofern die Überschrift nichts anderes sagt. |
+| `@aicore8/lib/shared` | `import type { Vec3 } from "@aicore8/lib/shared";` | `Vec3`, `Vec4`, `AccessRule`, `BlipStyle`, `ZoneShape`, `VehicleProps`, `VehicleSetup`, `PlacePed`. |
+| `@aicore8/lib/client` | `import type { ProgressOptions } from "@aicore8/lib/client";` | `ProgressOptions`. |
+| `@aicore8/lib/server` | `import type { ProgressForOptions } from "@aicore8/lib/server";` | `ProgressForOptions`. |
 
 <Callout type="info">
 Lua hat zur Laufzeit keine Typen. Eine Lua-Tabelle mit denselben Schlüsseln ist derselbe Wert: `{ x = 1.0, y = 2.0, z = 3.0 }` ist ein `Vec3`. Arrays sind Lua-Listen (`{ 'police', 'sheriff' }`), `null` ist `nil`. Siehe [Lib für Lua](/de/docs/developers/api/lua) für Vektoren.
@@ -604,7 +604,7 @@ const ballas: GangDefinition = { label: "Ballas", grades: [ { label: "Recruit", 
 
 ### AccessRule
 
-Wer einen Ort nutzen darf (einen Shop, ein Lager, eine Garage): einer aus `jobs` oder einer aus `gangs`. Beide Listen leer bedeutet alle. Aus `@aifivem/lib/shared`; lies es mit [readAccess](/de/docs/developers/api/lib-shared/access-places#readaccess).
+Wer einen Ort nutzen darf (einen Shop, ein Lager, eine Garage): einer aus `jobs` oder einer aus `gangs`. Beide Listen leer bedeutet alle. Aus `@aicore8/lib/shared`; lies es mit [readAccess](/de/docs/developers/api/lib-shared/access-places#readaccess).
 
 <TypeTable
   type={{
@@ -782,7 +782,7 @@ const held: HeldWeapon = { name: "WEAPON_PISTOL", label: "Pistol" };
 
 ### VehicleProps
 
-Aussehen und Tuning eines Fahrzeugs als einfache Daten: Farben, Mods, Extras, Lackierung, Räder, Neon, Tönung, Kennzeichen und Zustand. Aus `@aifivem/lib/shared`. Gespeichertes JSON trägt `v: 1`. Prüfe empfangene Daten mit [toVehicleProps](/de/docs/developers/api/lib-shared/vehicles#tovehicleprops).
+Aussehen und Tuning eines Fahrzeugs als einfache Daten: Farben, Mods, Extras, Lackierung, Räder, Neon, Tönung, Kennzeichen und Zustand. Aus `@aicore8/lib/shared`. Gespeichertes JSON trägt `v: 1`. Prüfe empfangene Daten mit [toVehicleProps](/de/docs/developers/api/lib-shared/vehicles#tovehicleprops).
 
 <TypeTable
   type={{
@@ -821,7 +821,7 @@ const props: VehicleProps = {
 
 ### VehicleSetup
 
-Was ein frisch gespawntes Fahrzeug zusätzlich zu den Standardwerten des Modells bekommt (das `setup` von Lib `spawnVehicle`, die in einem Shop gewählte Farbe). Aus `@aifivem/lib/shared`. Jedes Feld ist optional. Prüfe empfangene Daten mit [toVehicleSetup](/de/docs/developers/api/lib-shared/vehicles#tovehiclesetup).
+Was ein frisch gespawntes Fahrzeug zusätzlich zu den Standardwerten des Modells bekommt (das `setup` von Lib `spawnVehicle`, die in einem Shop gewählte Farbe). Aus `@aicore8/lib/shared`. Jedes Feld ist optional. Prüfe empfangene Daten mit [toVehicleSetup](/de/docs/developers/api/lib-shared/vehicles#tovehiclesetup).
 
 <TypeTable
   type={{
@@ -905,7 +905,7 @@ const car: OwnedVehicle = {
 Ein Wettertyp-Name des Vertrags von qb-weathersync, exakt in Großbuchstaben: `"EXTRASUNNY"`, `"CLEAR"`, `"NEUTRAL"`, `"SMOG"`, `"FOGGY"`, `"OVERCAST"`, `"CLOUDS"`, `"CLEARING"`, `"RAIN"`, `"THUNDER"`, `"SNOW"`, `"BLIZZARD"`, `"SNOWLIGHT"`, `"XMAS"`, `"HALLOWEEN"`. Die Liste ist die Konstante `WEATHERS`; `isWeather(value)` prüft einen Wert.
 
 ```ts title="Example"
-import { isWeather, type Weather } from "@aifivem/shared";
+import { isWeather, type Weather } from "@aicore8/shared";
 
 const next: Weather = "RAIN";
 if (isWeather(input)) world.setWeather(input);
@@ -913,7 +913,7 @@ if (isWeather(input)) world.setWeather(input);
 
 ### BlipStyle
 
-Das Aussehen eines Blips, wie das `blip`-Widget des Panels es speichert. Aus `@aifivem/lib/shared`; lies es mit [readBlipStyle](/de/docs/developers/api/lib-shared/access-places#readblipstyle).
+Das Aussehen eines Blips, wie das `blip`-Widget des Panels es speichert. Aus `@aicore8/lib/shared`; lies es mit [readBlipStyle](/de/docs/developers/api/lib-shared/access-places#readblipstyle).
 
 <TypeTable
   type={{
@@ -929,7 +929,7 @@ const style: BlipStyle = { sprite: 52, color: 2, scale: 0.8 };
 
 ### PlacePed
 
-Ein NPC, der an einem Ort steht (ein Ladenbesitzer, ein Angestellter). Aus `@aifivem/lib/shared`; lies es mit [readPlacePed](/de/docs/developers/api/lib-shared/access-places#readplaceped).
+Ein NPC, der an einem Ort steht (ein Ladenbesitzer, ein Angestellter). Aus `@aicore8/lib/shared`; lies es mit [readPlacePed](/de/docs/developers/api/lib-shared/access-places#readplaceped).
 
 <TypeTable
   type={{
@@ -972,7 +972,7 @@ const card: Notification = { text: "Vehicle stored", kind: "success", duration: 
 
 ### ProgressOptions
 
-Was der Client-Fortschrittsbalken (Lib `progress` auf dem Client) zeigt und wie sich der Spieler bewegen darf, während er läuft. Aus `@aifivem/lib/client`.
+Was der Client-Fortschrittsbalken (Lib `progress` auf dem Client) zeigt und wie sich der Spieler bewegen darf, während er läuft. Aus `@aicore8/lib/client`.
 
 <TypeTable
   type={{
@@ -1001,7 +1001,7 @@ const repair: ProgressOptions = {
 
 ### ServerProgress
 
-Der Balken, den ein Server-Ablauf im Client eines Spielers laufen lässt (Lib `progressFor`). Dieselben Felder wie [ProgressOptions](#progressoptions) ohne `whileDead`. `ProgressForOptions` (aus `@aifivem/lib/server`) fügt ein Feld hinzu:
+Der Balken, den ein Server-Ablauf im Client eines Spielers laufen lässt (Lib `progressFor`). Dieselben Felder wie [ProgressOptions](#progressoptions) ohne `whileDead`. `ProgressForOptions` (aus `@aicore8/lib/server`) fügt ein Feld hinzu:
 
 <TypeTable
   type={{

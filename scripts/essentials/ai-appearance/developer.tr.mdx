@@ -10,7 +10,7 @@ Script’inden ai-appearance’ı çağırma ya da tablosunu okuma. AI Core’un
 
 ## Client export’ları
 
-`@aifivem/shared` içinde `AiAppearanceClientExports` olarak tiplenmiştir. AI Core’un appearance adaptörü bunları çağırır.
+`@aicore8/shared` içinde `AiAppearanceClientExports` olarak tiplenmiştir. AI Core’un appearance adaptörü bunları çağırır.
 
 ### ApplyAppearance
 
@@ -104,8 +104,8 @@ ReloadSkin(): void
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { appearance } from "@aifivem/lib/client";
-import type { JobOutfit } from "@aifivem/shared";
+import { appearance } from "@aicore8/lib/client";
+import type { JobOutfit } from "@aicore8/shared";
 
 // AI Core üzerinden: ai-appearance ve desteklenen diğer kıyafet script’leriyle çalışır.
 const uniform: JobOutfit = {

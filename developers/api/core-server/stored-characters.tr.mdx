@@ -48,7 +48,7 @@ Hiçbir şey. Cevap `done` içinde gelir.
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters } from "@aifivem/lib/server";
+import { characters } from "@aicore8/lib/server";
 
 // Lib callback'i bir Promise'e sarar.
 export async function fine(citizenid: string, amount: number): Promise<boolean> {
@@ -108,7 +108,7 @@ Hiçbir şey. `done` bir [OfflineCharacter](/tr/docs/developers/api/types#offlin
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters } from "@aifivem/lib/server";
+import { characters } from "@aicore8/lib/server";
 
 export async function describe(charId: number): Promise<string> {
   const c = await characters.get(charId);
@@ -162,8 +162,8 @@ Hiçbir şey. `done` bir [CharacterSearchPage](/tr/docs/developers/api/types#cha
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters, onClientCallback } from "@aifivem/lib/server";
-import { oneArg, readText } from "@aifivem/lib/shared";
+import { characters, onClientCallback } from "@aicore8/lib/server";
+import { oneArg, readText } from "@aicore8/lib/shared";
 
 onClientCallback(
   "myscript:searchPeople",
@@ -218,7 +218,7 @@ Hiçbir şey. `done` bir [StoredCharacter](/tr/docs/developers/api/types#storedc
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters, resourceExport } from "@aifivem/lib/server";
+import { characters, resourceExport } from "@aicore8/lib/server";
 
 const core = resourceExport("ai-core");
 
@@ -278,7 +278,7 @@ Hiçbir şey. `done` bir [MembersPage](/tr/docs/developers/api/types#memberspage
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters } from "@aifivem/lib/server";
+import { characters } from "@aicore8/lib/server";
 
 /** Bir mesleğin bütün üyeleri, sayfa sayfa. */
 export async function roster(job: string) {
@@ -351,7 +351,7 @@ Hiçbir şey. `done` `{ ok: true }` ya da bir dil anahtarıyla `{ ok: false, err
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters } from "@aifivem/lib/server";
+import { characters } from "@aicore8/lib/server";
 
 /** Satıcı çevrimiçi olsun olmasın satış ödemesini yapar. */
 export async function payOut(charId: number, amount: number): Promise<boolean> {
@@ -407,7 +407,7 @@ Hiçbir şey. `done` `{ ok: true }` ya da bir dil anahtarıyla `{ ok: false, err
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters } from "@aifivem/lib/server";
+import { characters } from "@aicore8/lib/server";
 
 /** Bir üyeyi meslekten çıkarır, çevrimiçi olsun olmasın. */
 export async function fire(charId: number, job: string): Promise<boolean> {
@@ -490,7 +490,7 @@ Hiçbir şey. `done` `{ ok: true }` ya da bilinmeyen karakter veya JSON'un tutam
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters } from "@aifivem/lib/server";
+import { characters } from "@aicore8/lib/server";
 
 await characters.setMeta(12, "myscript_licence", { kind: "drive", since: Date.now() });
 await characters.setMeta(12, "myscript_licence", null); // geri alır
@@ -542,7 +542,7 @@ Hiçbir şey. `done` `{ ok: true }` ya da bir dil anahtarıyla `{ ok: false, err
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters } from "@aifivem/lib/server";
+import { characters } from "@aicore8/lib/server";
 
 const result = await characters.setInfo(12, { lastname: "Doe-Smith", height: 174 });
 if (!result.ok) console.log(`ad değişikliği reddedildi: ${result.error}`);

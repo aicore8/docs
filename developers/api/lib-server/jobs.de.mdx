@@ -5,7 +5,7 @@ icon: Siren
 ---
 
 ```ts title="TypeScript"
-import { jobs, dispatch, prison, mdt, ems, medical, stress, needs, definitions, isPrimeTime } from "@aifivem/lib/server";
+import { jobs, dispatch, prison, mdt, ems, medical, stress, needs, definitions, isPrimeTime } from "@aicore8/lib/server";
 ```
 
 `jobs` und `definitions` sind ai-core selbst: die Jobs und Gangs eines Charakters und die Job-Definitionen des Servers. Alles andere hier geht über einen von ai-cores Layern, wo das Script antwortet, das der Server für diese Aufgabe fährt (ein Alarmsystem, ein Gefängnis, ein MDT, ein Death-Script, ein HUD). Dein Script läuft weiter, wenn der Besitzer es tauscht. Solange kein solches Script läuft, scheitern diese Aufrufe still (`false`, `0`, `null`).
@@ -37,7 +37,7 @@ Ein [JobMembership](/de/docs/developers/api/types#jobmembership) (`{ job, grade 
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { jobs } from "@aifivem/lib/server";
+import { jobs } from "@aicore8/lib/server";
 
 export function isOfficer(source: number): boolean {
   return jobs.current(source)?.job === "police";
@@ -132,7 +132,7 @@ local ok = aiLib.jobs.set(source, job, grade)
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { jobs, notify } from "@aifivem/lib/server";
+import { jobs, notify } from "@aicore8/lib/server";
 
 export function hire(source: number, job: string): void {
   if (!jobs.set(source, job, 0)) return notify(source, "Einstellung nicht möglich", "error");
@@ -305,7 +305,7 @@ Der Typ ist [`DispatchAlert`](/de/docs/developers/api/types#dispatchalert).
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { dispatch, coordsOf, createLocale } from "@aifivem/lib/server";
+import { dispatch, coordsOf, createLocale } from "@aicore8/lib/server";
 
 const Locale = createLocale();
 
@@ -858,7 +858,7 @@ local ok = aiLib.definitions.removeJob(name)
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { definitions } from "@aifivem/lib/server";
+import { definitions } from "@aicore8/lib/server";
 
 // Einmal beim Start: der Job existiert, solange diese Resource läuft.
 const result = definitions.registerJob("garbage", {

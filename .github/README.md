@@ -1,6 +1,6 @@
 # AI Core docs
 
-The documentation of [AI Core](https://github.com/aifivem/ai-core), the AI-ready FiveM framework, published at **[aifivem.com/docs](https://aifivem.com/docs)**.
+The documentation of [AI Core](https://github.com/aicore8/ai-core), the AI-ready FiveM framework, published at **[aicore8.com/docs](https://aicore8.com/docs)**.
 
 ## Writing
 

@@ -5,7 +5,7 @@ icon: Users
 ---
 
 ```ts title="TypeScript"
-import { characters } from "@aifivem/lib/server";
+import { characters } from "@aicore8/lib/server";
 ```
 
 ```lua title="Lua"
@@ -52,7 +52,7 @@ Sem equivalente em Lua: chame o export [GetCharIdByCitizenId](/pt/docs/developer
 #### Exemplo
 
 ```ts
-import { characters } from "@aifivem/lib/server";
+import { characters } from "@aicore8/lib/server";
 
 /** Uma multa que funciona esteja o condutor online ou não. */
 export async function fine(citizenid: string, amount: number): Promise<boolean> {
@@ -93,7 +93,7 @@ Um [OfflineCharacter](/pt/docs/developers/api/types#offlinecharacter), ou `null`
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters } from "@aifivem/lib/server";
+import { characters } from "@aicore8/lib/server";
 
 export async function bankOf(charId: number): Promise<number> {
   const c = await characters.get(charId);
@@ -144,8 +144,8 @@ Uma [CharacterSearchPage](/pt/docs/developers/api/types#charactersearchpage): `c
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters, onClientCallback } from "@aifivem/lib/server";
-import { oneArg, readText } from "@aifivem/lib/shared";
+import { characters, onClientCallback } from "@aicore8/lib/server";
+import { oneArg, readText } from "@aicore8/lib/shared";
 
 onClientCallback(
   "myscript:people",
@@ -226,7 +226,7 @@ Uma [MembersPage](/pt/docs/developers/api/types#memberspage): `members` e `next`
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters } from "@aifivem/lib/server";
+import { characters } from "@aicore8/lib/server";
 
 /** Todo o quadro de pessoal de um emprego, página a página. */
 export async function roster(job: string) {
@@ -316,7 +316,7 @@ local result = aiLib.characters.setMoney(charId, account, amount, reason)
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters } from "@aifivem/lib/server";
+import { characters } from "@aicore8/lib/server";
 
 export async function payOut(charId: number, amount: number): Promise<boolean> {
   const result = await characters.addMoney(charId, "bank", amount, "Veículo vendido");
@@ -374,7 +374,7 @@ local result = aiLib.characters.removeJob(charId, job)
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters } from "@aifivem/lib/server";
+import { characters } from "@aicore8/lib/server";
 
 /** Despedir um membro, online ou não. */
 export async function fire(charId: number, job: string): Promise<boolean> {

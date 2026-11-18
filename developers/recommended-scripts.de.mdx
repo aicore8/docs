@@ -16,7 +16,7 @@ Das Dashboard des Admin-Panels hat einen Bereich **Recommended scripts**: kosten
   - Treibstoff, Türen, Garagen, das Handy und Polizeimeldungen (`dispatch.alert`) gehen genauso über ihre Ebenen.
 - **Hat seine Kategorie eine Ebene, hat es dort einen Adapter.** Ein Inventar-, Fahrzeugschlüssel-, Kleidungs-, Treibstoff-, Türschloss-, Garagen-, Handy-, Dispatch-, Bank-, Rechnungs- oder Medizin-Skript braucht einen Adapter in dieser Ebene, damit die anderen Skripte es erreichen. Ein Skript, das eine API beantwortet, die die Ebene schon liest, braucht weniger: Ein Treibstoff-Skript mit Client-Exports im LegacyFuel-Stil `GetFuel(vehicle)` / `SetFuel(vehicle, level)` ist eine Zeile in der Liste der Treibstoff-Ebene.
 
-Die Ebenen und die Skripte, die sie unterstützen: [Ebenen und die Brücke](/de/docs/developers/layers), [Kompatibilität](/de/docs/compatibility) und eine Notiz pro Ebene in [`docs/compat/`](https://github.com/aifivem/aicore-server/tree/main/docs/compat) des Server-Repositorys.
+Die Ebenen und die Skripte, die sie unterstützen: [Ebenen und die Brücke](/de/docs/developers/layers), [Kompatibilität](/de/docs/compatibility) und eine Notiz pro Ebene in [`docs/compat/`](https://github.com/aicore8/aicore-server/tree/main/docs/compat) des Server-Repositorys.
 
 ## In die Liste kommen
 
@@ -25,7 +25,7 @@ Die Ebenen und die Skripte, die sie unterstützen: [Ebenen und die Brücke](/de/
 
 ### Den Eintrag hinzufügen
 
-Forke [aifivem/ai-core](https://github.com/aifivem/ai-core) und füge der Liste `RECOMMENDATIONS` in `resource/server/recommendations/index.ts` einen Eintrag hinzu:
+Forke [aicore8/ai-core](https://github.com/aicore8/ai-core) und füge der Liste `RECOMMENDATIONS` in `resource/server/recommendations/index.ts` einen Eintrag hinzu:
 
 ```ts
 {
@@ -73,7 +73,7 @@ Im selben Pull Request:
 - die Adapterdatei im Ordner `adapters/` der Ebene: `resource/server/<layer>/adapters/<resource>.ts`, dazu `resource/client/<layer>/adapters/<resource>.ts`, wenn das Skript nur eine Client-API hat. Kopiere den Adapter eines ähnlichen Skripts;
 - seine Zeile in der Adapterliste der Ebene: `resource/server/<layer>/registry.ts`, oder die `index.ts` der Ebene, wenn sie keine `registry.ts` hat (phone, medical, prison, world).
 
-Öffne dann einen zweiten Pull Request auf [aifivem/aicore-server](https://github.com/aifivem/aicore-server), der das Skript in die Notiz der Ebene `docs/compat/<layer>.md` einträgt (zum Beispiel `vehicle-keys.md`, `phone.md`): getestete Version, Status und bekannte Grenzen.
+Öffne dann einen zweiten Pull Request auf [aicore8/aicore-server](https://github.com/aicore8/aicore-server), der das Skript in die Notiz der Ebene `docs/compat/<layer>.md` einträgt (zum Beispiel `vehicle-keys.md`, `phone.md`): getestete Version, Status und bekannte Grenzen.
 
 </Step>
 <Step>

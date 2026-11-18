@@ -13,7 +13,7 @@ This page is written for two readers: you, and the AI coding agent (Claude Code,
 Open your server data folder in your coding agent and paste this, with the scope filled in:
 
 ```text
-Update scripts on this AI Core server, following https://aifivem.com/docs/update-a-script.md
+Update scripts on this AI Core server, following https://aicore8.com/docs/update-a-script.md
 If this folder has .claude/skills/aicore-script-update/, read its SKILL.md and references: same procedure.
 
 Scope: <every outdated ai-* script and package | ai-inventory ai-garages | the third-party scripts in C:\path\to\new-versions>
@@ -35,7 +35,7 @@ Scope: <every outdated ai-* script and package | ai-inventory ai-garages | the t
 ```
 
 <Callout>
-Every AI Core server folder has this procedure as a project skill in `.claude/skills/aicore-script-update/`: the txAdmin recipe installs it together with the rules, `tools/`, `docs/compat/`, `CLAUDE.md` and `AGENTS.md`, just like the hand install. Claude Code loads it by itself when you say "update my scripts" or "a new version is out"; other agents find it through `AGENTS.md`. A server installed with an older recipe may not have these files: download them from the [aicore-server](https://github.com/aifivem/aicore-server) repository into your server folder as in [Install by hand](/docs/installation#install-by-hand), keeping your own cfg files.
+Every AI Core server folder has this procedure as a project skill in `.claude/skills/aicore-script-update/`: the txAdmin recipe installs it together with the rules, `tools/`, `docs/compat/`, `CLAUDE.md` and `AGENTS.md`, just like the hand install. Claude Code loads it by itself when you say "update my scripts" or "a new version is out"; other agents find it through `AGENTS.md`. A server installed with an older recipe may not have these files: download them from the [aicore-server](https://github.com/aicore8/aicore-server) repository into your server folder as in [Install by hand](/docs/installation#install-by-hand), keeping your own cfg files.
 </Callout>
 
 ## What stays yours
@@ -53,11 +53,11 @@ Every AI Core server folder has this procedure as a project skill in `.claude/sk
 
 | Script | New version | You provide |
 | --- | --- | --- |
-| `ai-*` resources in `resources/[ai]/` (ai-core, ai-lib, ai-mysql included) | The GitHub release of the repository named in its `package.json` (`"repository": "github:aifivem/<name>"`) | Nothing |
-| The `@aifivem/*` packages in `packages/` (development setup only) | npm (`npm view @aifivem/<pkg> version`) | Nothing |
+| `ai-*` resources in `resources/[ai]/` (ai-core, ai-lib, ai-mysql included) | The GitHub release of the repository named in its `package.json` (`"repository": "github:aicore8/<name>"`) | Nothing |
+| The `@aicore8/*` packages in `packages/` (development setup only) | npm (`npm view @aicore8/<pkg> version`) | Nothing |
 | Any other resource (usually in `resources/[standalone]/`) | The vendor | The new folder or zip |
 
-A server installed with the recipe got every `ai-*` script as its release zip: each script builds in its own folder and takes the `@aifivem/*` packages from npm. A development setup (`bun run setup`) has `packages/` and builds every script from the server folder.
+A server installed with the recipe got every `ai-*` script as its release zip: each script builds in its own folder and takes the `@aicore8/*` packages from npm. A development setup (`bun run setup`) has `packages/` and builds every script from the server folder.
 
 ai-core checks every started script that has a GitHub repository (once every 6 hours per script) and prints `<name> <current> is outdated: <latest> is out (<url>)` in the console; the same list is on the admin dashboard. Update checks and the scripts they skip are set in the [admin panel](/docs/admin-panel) under **General** (`updates.check`, `updates.ignore` in ai-core's `data/settings.json`).
 
@@ -143,7 +143,7 @@ unzip -q update/<name>/old/*.zip -d update/<name>/old/x
 ```
 
 - **New upstream** is the release zip `<name>-<tag>.zip`: the build and the source, top folder `<name>/`. Releases before November 2026 attach the build only; take the tag's source then (top folder `<owner>-<name>-<sha>/`).
-- The release zip's `package.json` pins the `@aifivem/*` packages (`^x.y.z` instead of `workspace:*`) and adds `"workspaces": ["web"]`. That is not a change of yours: leave these fields out of the three-way and keep your server's form (recipe install: the zip's; development setup: `workspace:*`, no `workspaces`).
+- The release zip's `package.json` pins the `@aicore8/*` packages (`^x.y.z` instead of `workspace:*`) and adds `"workspaces": ["web"]`. That is not a change of yours: leave these fields out of the three-way and keep your server's form (recipe install: the zip's; development setup: `workspace:*`, no `workspaces`).
 - **Old upstream** is the tag of the version the server runs (see the tag style with `gh release list --repo <owner>/<name>`). It can always be downloaded, so the three-way always has its base.
 - Nothing in these folders is run, installed or built.
 
@@ -166,7 +166,7 @@ Run the three-way model over old, ours and new, and write the result into the sc
 | File | Rule |
 | --- | --- |
 | `resource/**`, `web/src/**`, `bridge/**`, `sql/**`, Lua and other source | Three-way. A local change whose code moved or whose contract changed is adapted to the new code; one with no place left is reported. |
-| `package.json` | New upstream, plus local additions that still make sense; the `@aifivem/*` versions and `workspaces` keep your server's form (see the download step). `version` ends at the new release's version, or the update check keeps warning. |
+| `package.json` | New upstream, plus local additions that still make sense; the `@aicore8/*` versions and `workspaces` keep your server's form (see the download step). `version` ends at the new release's version, or the update check keeps warning. |
 | `dist/`, `fxmanifest.lua`, `resource/server/tables.ts`, `data/schemas/*.schema.json` | Take new; the build regenerates them. |
 | `data/<file>.json` (panel content) | Keep ours (see below). |
 | `data/secrets.json`, `data/*.json.bak` | Restore from the backup untouched. |

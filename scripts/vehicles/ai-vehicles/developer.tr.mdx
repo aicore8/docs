@@ -4,10 +4,10 @@ description: ai-vehicles’ın server export’ları, state bag’leri ve event�
 icon: Code
 ---
 
-ai-vehicles’ın sadece server export’ları vardır. Çoğu senkrondur (Promise yok, Lua’da bekleme yok); veritabanını okuyabilenler - `FindVehicle`, `GetVehiclesOf`, `SetPlate`, `DeleteVehicleByPlate`, `AdoptVehicle` - ve `SpawnVehicle` cevabını bir callback ile verir. Tipler `@aifivem/shared` içindedir (`vehicles.ts`).
+ai-vehicles’ın sadece server export’ları vardır. Çoğu senkrondur (Promise yok, Lua’da bekleme yok); veritabanını okuyabilenler - `FindVehicle`, `GetVehiclesOf`, `SetPlate`, `DeleteVehicleByPlate`, `AdoptVehicle` - ve `SpawnVehicle` cevabını bir callback ile verir. Tipler `@aicore8/shared` içindedir (`vehicles.ts`).
 
 ```ts title="TypeScript"
-import { resourceExport } from "@aifivem/lib/server";
+import { resourceExport } from "@aicore8/lib/server";
 const vehicles = resourceExport("ai-vehicles");
 ```
 
@@ -42,7 +42,7 @@ Bir aracın sahibi.
     plate: { type: 'string', description: 'Id’den üretilen plaka, `AI` ve altı karakter.', required: true },
     owner: { type: 'VehicleOwner', description: 'Sahibi.', required: true },
     model: { type: 'string', description: 'Küçük harfle model adı (`"sultan"`).', required: true },
-    props: { type: 'VehicleProps | null', description: 'Kayıtlı görünüş ve modifiye (`@aifivem/lib/shared` içindeki `VehicleProps`). İlk kayda kadar `null`.', required: true },
+    props: { type: 'VehicleProps | null', description: 'Kayıtlı görünüş ve modifiye (`@aicore8/lib/shared` içindeki `VehicleProps`). İlk kayda kadar `null`.', required: true },
     setup: { type: 'VehicleSetup | null', description: 'Aracın props’u yokken spawn olduğu görünüş (galeride seçilen bir renk). İlk props kaydı bunu siler.', required: true },
     state: { type: '"garage" | "out" | "impound"', description: 'Park halinde, dünyada ya da çekilmiş araç otoparkında bekliyor.', required: true },
     garage: { type: 'string | null', description: 'Park edildiği garaj id’si. Dışarıdayken ya da mesleğinin veya çetesinin her garajında görünen bir filo aracı için `null`.', required: true },
@@ -114,7 +114,7 @@ Yeni aracın `{ id, plate }` değeri. `owner` geçerli bir sahip değilse ya da 
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { resourceExport } from "@aifivem/lib/server";
+import { resourceExport } from "@aicore8/lib/server";
 
 const core = resourceExport("ai-core");
 const vehicles = resourceExport("ai-vehicles");
@@ -350,7 +350,7 @@ Hiçbir şey. `done` bir [OwnedVehicle](#ownedvehicle) ya da `null` alır.
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { resourceExport } from "@aifivem/lib/server";
+import { resourceExport } from "@aicore8/lib/server";
 
 const vehicles = resourceExport("ai-vehicles");
 
@@ -416,7 +416,7 @@ Hiçbir şey. `done` bir [OwnedVehicle](#ownedvehicle) dizisi alır.
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters, resourceExport } from "@aifivem/lib/server";
+import { characters, resourceExport } from "@aicore8/lib/server";
 
 const vehicles = resourceExport("ai-vehicles");
 
@@ -665,7 +665,7 @@ Hiçbir şey. `done` bir [DeleteByPlateResult](#deletebyplateresult) alır: sild
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { resourceExport } from "@aifivem/lib/server";
+import { resourceExport } from "@aicore8/lib/server";
 
 const vehicles = resourceExport("ai-vehicles");
 
@@ -722,7 +722,7 @@ Hiçbir şey. `done` bir [AdoptVehicleResult](#adoptvehicleresult) alır: `{ ok:
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { resourceExport, triggerClientCallback } from "@aifivem/lib/server";
+import { resourceExport, triggerClientCallback } from "@aicore8/lib/server";
 
 const vehicles = resourceExport("ai-vehicles");
 
@@ -781,7 +781,7 @@ Hiçbir şey. `cb` network id’sini alır; araç yoksa, zaten dışarıdaysa, �
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { resourceExport } from "@aifivem/lib/server";
+import { resourceExport } from "@aicore8/lib/server";
 
 const vehicles = resourceExport("ai-vehicles");
 
@@ -817,7 +817,7 @@ Zaten dışarıda olan bir araç reddedilir (`cb(null)`). Dışarıdayken entity
 
 ### ai-vehicles:owners
 
-Araçlar ai-vehicles’ın belleğine girdiğinde ya da sahip değiştirdiğinde ve plakalar bellekten çıktığında tetiklenir. Server tick’i başına bir toplu paket. Açılışta `GetPlateOwners`’ı bir kez oku, sonra plakadan sahibe bir kopya tutmak için bu paketleri uygula. Adı `@aifivem/shared` içinde `VEHICLES_EVENTS.owners`’dır.
+Araçlar ai-vehicles’ın belleğine girdiğinde ya da sahip değiştirdiğinde ve plakalar bellekten çıktığında tetiklenir. Server tick’i başına bir toplu paket. Açılışta `GetPlateOwners`’ı bir kez oku, sonra plakadan sahibe bir kopya tutmak için bu paketleri uygula. Adı `@aicore8/shared` içinde `VEHICLES_EVENTS.owners`’dır.
 
 **Taraf:** Server (yerel event, client’lara gönderilmez)
 
@@ -831,8 +831,8 @@ Araçlar ai-vehicles’ın belleğine girdiğinde ya da sahip değiştirdiğinde
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { resourceExport } from "@aifivem/lib/server";
-import { VEHICLES_EVENTS } from "@aifivem/shared";
+import { resourceExport } from "@aicore8/lib/server";
+import { VEHICLES_EVENTS } from "@aicore8/shared";
 
 const owners = new Map<string, string>();
 for (const [plate, type, id] of resourceExport("ai-vehicles").GetPlateOwners())
@@ -861,7 +861,7 @@ end)
 
 ## State bag’ler
 
-ai-vehicles bunları spawn ettiği her sahipli araçta ayarlar. Adlar `VEHICLE_BAGS` içindedir (`@aifivem/shared`).
+ai-vehicles bunları spawn ettiği her sahipli araçta ayarlar. Adlar `VEHICLE_BAGS` içindedir (`@aicore8/shared`).
 
 | Bag | Tip | Anlamı |
 | --- | --- | --- |

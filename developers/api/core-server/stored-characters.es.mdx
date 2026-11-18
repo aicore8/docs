@@ -48,7 +48,7 @@ Nada. La respuesta llega en `done`.
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters } from "@aifivem/lib/server";
+import { characters } from "@aicore8/lib/server";
 
 // La lib envuelve el callback en una Promise.
 export async function fine(citizenid: string, amount: number): Promise<boolean> {
@@ -108,7 +108,7 @@ Nada. `done` recibe un [OfflineCharacter](/es/docs/developers/api/types#offlinec
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters } from "@aifivem/lib/server";
+import { characters } from "@aicore8/lib/server";
 
 export async function describe(charId: number): Promise<string> {
   const c = await characters.get(charId);
@@ -162,8 +162,8 @@ Nada. `done` recibe una [CharacterSearchPage](/es/docs/developers/api/types#char
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters, onClientCallback } from "@aifivem/lib/server";
-import { oneArg, readText } from "@aifivem/lib/shared";
+import { characters, onClientCallback } from "@aicore8/lib/server";
+import { oneArg, readText } from "@aicore8/lib/shared";
 
 onClientCallback(
   "myscript:searchPeople",
@@ -218,7 +218,7 @@ Nada. `done` recibe un array de [StoredCharacter](/es/docs/developers/api/types#
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters, resourceExport } from "@aifivem/lib/server";
+import { characters, resourceExport } from "@aicore8/lib/server";
 
 const core = resourceExport("ai-core");
 
@@ -278,7 +278,7 @@ Nada. `done` recibe una [MembersPage](/es/docs/developers/api/types#memberspage)
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters } from "@aifivem/lib/server";
+import { characters } from "@aicore8/lib/server";
 
 /** Todos los miembros de un trabajo, página a página. */
 export async function roster(job: string) {
@@ -351,7 +351,7 @@ Nada. `done` recibe `{ ok: true }`, o `{ ok: false, error }` con una clave de id
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters } from "@aifivem/lib/server";
+import { characters } from "@aicore8/lib/server";
 
 /** Paga una venta, esté el vendedor conectado o no. */
 export async function payOut(charId: number, amount: number): Promise<boolean> {
@@ -407,7 +407,7 @@ Nada. `done` recibe `{ ok: true }`, o `{ ok: false, error }` con una clave de id
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters } from "@aifivem/lib/server";
+import { characters } from "@aicore8/lib/server";
 
 /** Despide a un miembro, conectado o no. */
 export async function fire(charId: number, job: string): Promise<boolean> {
@@ -490,7 +490,7 @@ Nada. `done` recibe `{ ok: true }`, o `{ ok: false, error }` para un personaje d
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters } from "@aifivem/lib/server";
+import { characters } from "@aicore8/lib/server";
 
 await characters.setMeta(12, "myscript_licence", { kind: "drive", since: Date.now() });
 await characters.setMeta(12, "myscript_licence", null); // la quita
@@ -542,7 +542,7 @@ Nada. `done` recibe `{ ok: true }`, o `{ ok: false, error }` con una clave de id
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters } from "@aifivem/lib/server";
+import { characters } from "@aicore8/lib/server";
 
 const result = await characters.setInfo(12, { lastname: "Doe-Smith", height: 174 });
 if (!result.ok) console.log(`cambio de nombre rechazado: ${result.error}`);

@@ -12,7 +12,7 @@ AI Core est en TypeScript de bout en bout. Chaque ressource suit la structure [o
 | --- | --- |
 | Dossier du serveur | `server.cfg` et les autres fichiers cfg, `recipe/` (txAdmin), `tools/`, `template/`, les règles et la documentation pour les outils d’IA. C’est aussi la racine du workspace bun. |
 | `ai-core` et chaque `ai-*` | Un dépôt par script, uniquement la source. Chaque release joint un zip avec le build et la source, donc les serveurs tournent sans outils de build. |
-| `packages` | Les paquets npm : `@aifivem/lib` (utilitaires), `@aifivem/mysql` (moteur de base de données), `@aifivem/shared` (contrats entre ressources), `@aifivem/build` (étapes de build). |
+| `packages` | Les paquets npm : `@aicore8/lib` (utilitaires), `@aicore8/mysql` (moteur de base de données), `@aicore8/shared` (contrats entre ressources), `@aicore8/build` (étapes de build). |
 
 ## Build
 
@@ -24,13 +24,13 @@ bun run typecheck
 bun run lint
 ```
 
-Dans une ressource, les mêmes scripts tournent pour cette seule ressource ; `bun run dev` surveille les changements. `fxmanifest.lua` est généré à partir de `package.json` : ne le modifiez jamais à la main. Après un build, redémarrez la ressource (`bun tools/rcon.ts "ensure ai-fuel"`) ou tout ce qui vient après ai-core (`bun tools/restart.ts`). Un script issu d’un zip de release se compile seul : `bun install && bun run build` dans son dossier (les paquets `@aifivem/*` viennent de npm).
+Dans une ressource, les mêmes scripts tournent pour cette seule ressource ; `bun run dev` surveille les changements. `fxmanifest.lua` est généré à partir de `package.json` : ne le modifiez jamais à la main. Après un build, redémarrez la ressource (`bun tools/rcon.ts "ensure ai-fuel"`) ou tout ce qui vient après ai-core (`bun tools/restart.ts`). Un script issu d’un zip de release se compile seul : `bun install && bun run build` dans son dossier (les paquets `@aicore8/*` viennent de npm).
 
 ## Règles que suit chaque script
 
 - **Le serveur décide.** Chaque requête client passe par la porte d’entrée de la lib (`onClientEvent` / `onClientCallback`) : vérification du vrai joueur, limite de fréquence, garde-fous (admin, a un personnage, près d’un point), un parseur d’arguments. L’argent, les objets et les permissions ne changent jamais côté client.
 - **Snapshot et delta.** Les données en direct partent vers les clients sous forme d’un snapshot, puis seulement les changements, seulement vers ceux qui en ont besoin. Pas de polling, pas de signaux « changé, recharge ».
-- **La lib d’abord.** Les points d’interaction, blips, zones, raccourcis clavier, commandes, menus, progression, véhicules, state bags et tâches périodiques viennent de `@aifivem/lib` ; une seconde copie écrite à la main est un défaut.
+- **La lib d’abord.** Les points d’interaction, blips, zones, raccourcis clavier, commandes, menus, progression, véhicules, state bags et tâches périodiques viennent de `@aicore8/lib` ; une seconde copie écrite à la main est un défaut.
 - **Tout dans le panneau.** Les réglages qu’un propriétaire de serveur ajuste se trouvent dans le panneau d’administration (`schema.ts` + `data/*.json`), jamais dans un fichier de config.
 - **Via AI Core.** Objets, clés de véhicule, alertes, téléphone, météo, prison, vêtements et morts passent par les couches d’AI Core, jamais par les exports d’un script précis.
 - **L’échelle d’abord.** Les collections sont prévues pour des millions d’enregistrements et mesurées avec des benchmarks.

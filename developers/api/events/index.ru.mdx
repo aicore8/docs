@@ -27,7 +27,7 @@ ai-core сообщает другим скриптам, когда что-то �
 
 ## Имена берутся из констант
 
-В TypeScript никогда не набирайте имя события вручную. Это константы в `@aifivem/shared`:
+В TypeScript никогда не набирайте имя события вручную. Это константы в `@aicore8/shared`:
 
 | Константа | События |
 | --- | --- |
@@ -45,7 +45,7 @@ ai-core сообщает другим скриптам, когда что-то �
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts title="resource/server/index.ts"
-import { CORE, type CharacterInfo } from "@aifivem/shared";
+import { CORE, type CharacterInfo } from "@aicore8/shared";
 
 on(CORE.playerLoadedEvent, (src: number, character: CharacterInfo) => {
   console.log(`${character.firstname} ${character.lastname} joined as ${src}`);

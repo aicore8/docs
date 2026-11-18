@@ -13,7 +13,7 @@ Esta página foi escrita para dois leitores: você e o agente de programação c
 Abra a pasta de dados do seu servidor no seu agente de programação e cole isto, com o escopo preenchido:
 
 ```text
-Atualize scripts deste servidor AI Core seguindo https://aifivem.com/docs/update-a-script.md
+Atualize scripts deste servidor AI Core seguindo https://aicore8.com/docs/update-a-script.md
 Se esta pasta tiver .claude/skills/aicore-script-update/, leia o SKILL.md e as references dela: é o mesmo procedimento.
 
 Escopo: <cada script ai-* e pacote desatualizado | ai-inventory ai-garages | os scripts de terceiros em C:\caminho\para\novas-versoes>
@@ -35,7 +35,7 @@ Escopo: <cada script ai-* e pacote desatualizado | ai-inventory ai-garages | os 
 ```
 
 <Callout>
-Toda pasta de servidor do AI Core tem este procedimento como skill do projeto em `.claude/skills/aicore-script-update/`: a recipe do txAdmin o instala junto com as regras, `tools/`, `docs/compat/`, `CLAUDE.md` e `AGENTS.md`, igual à instalação à mão. O Claude Code o carrega sozinho quando você diz "atualize meus scripts" ou "saiu uma versão nova"; os outros agentes o encontram pelo `AGENTS.md`. Um servidor instalado com uma recipe mais antiga pode não ter esses arquivos: baixe-os do repositório [aicore-server](https://github.com/aifivem/aicore-server) na pasta do seu servidor como em [Instalar à mão](/pt/docs/installation#instalar-à-mão), mantendo seus próprios arquivos cfg.
+Toda pasta de servidor do AI Core tem este procedimento como skill do projeto em `.claude/skills/aicore-script-update/`: a recipe do txAdmin o instala junto com as regras, `tools/`, `docs/compat/`, `CLAUDE.md` e `AGENTS.md`, igual à instalação à mão. O Claude Code o carrega sozinho quando você diz "atualize meus scripts" ou "saiu uma versão nova"; os outros agentes o encontram pelo `AGENTS.md`. Um servidor instalado com uma recipe mais antiga pode não ter esses arquivos: baixe-os do repositório [aicore-server](https://github.com/aicore8/aicore-server) na pasta do seu servidor como em [Instalar à mão](/pt/docs/installation#instalar-à-mão), mantendo seus próprios arquivos cfg.
 </Callout>
 
 ## O que continua seu
@@ -53,11 +53,11 @@ Toda pasta de servidor do AI Core tem este procedimento como skill do projeto em
 
 | Script | Nova versão | O que você fornece |
 | --- | --- | --- |
-| Os resources `ai-*` em `resources/[ai]/` (incluindo ai-core, ai-lib e ai-mysql) | A release no GitHub do repositório indicado no `package.json` dele (`"repository": "github:aifivem/<name>"`) | Nada |
-| Os pacotes `@aifivem/*` em `packages/` (só em uma instalação de desenvolvimento) | npm (`npm view @aifivem/<pkg> version`) | Nada |
+| Os resources `ai-*` em `resources/[ai]/` (incluindo ai-core, ai-lib e ai-mysql) | A release no GitHub do repositório indicado no `package.json` dele (`"repository": "github:aicore8/<name>"`) | Nada |
+| Os pacotes `@aicore8/*` em `packages/` (só em uma instalação de desenvolvimento) | npm (`npm view @aicore8/<pkg> version`) | Nada |
 | Qualquer outro resource (geralmente em `resources/[standalone]/`) | O vendedor | A pasta nova ou o zip |
 
-Um servidor instalado com a receita recebeu cada script `ai-*` como o zip da sua release: cada script compila na própria pasta e pega os pacotes `@aifivem/*` do npm. Uma instalação de desenvolvimento (`bun run setup`) tem `packages/` e compila todos os scripts a partir da pasta do servidor.
+Um servidor instalado com a receita recebeu cada script `ai-*` como o zip da sua release: cada script compila na própria pasta e pega os pacotes `@aicore8/*` do npm. Uma instalação de desenvolvimento (`bun run setup`) tem `packages/` e compila todos os scripts a partir da pasta do servidor.
 
 O ai-core verifica cada script iniciado que tem repositório no GitHub (a cada 6 horas por script) e escreve `<name> <current> is outdated: <latest> is out (<url>)` no console; a mesma lista aparece no dashboard de admin. As verificações de atualização e os scripts ignorados ficam no [painel de administração](/pt/docs/admin-panel) em **General** (`updates.check`, `updates.ignore` no `data/settings.json` do ai-core).
 
@@ -143,7 +143,7 @@ unzip -q update/<name>/old/*.zip -d update/<name>/old/x
 ```
 
 - **O upstream novo** é o zip da release `<name>-<tag>.zip`: o build e o código-fonte, pasta de cima `<name>/`. Releases anteriores a novembro de 2026 anexam só o build; nesse caso, pegue o código-fonte da tag (pasta de cima `<owner>-<name>-<sha>/`).
-- O `package.json` do zip da release fixa os pacotes `@aifivem/*` (`^x.y.z` em vez de `workspace:*`) e adiciona `"workspaces": ["web"]`. Isso não é uma mudança sua: deixe esses campos fora da comparação em três vias e mantenha a forma do seu servidor (instalação com a receita: a do zip; instalação de desenvolvimento: `workspace:*`, sem `workspaces`).
+- O `package.json` do zip da release fixa os pacotes `@aicore8/*` (`^x.y.z` em vez de `workspace:*`) e adiciona `"workspaces": ["web"]`. Isso não é uma mudança sua: deixe esses campos fora da comparação em três vias e mantenha a forma do seu servidor (instalação com a receita: a do zip; instalação de desenvolvimento: `workspace:*`, sem `workspaces`).
 - **O upstream antigo** é a tag da versão que o servidor usa (o padrão das tags aparece com `gh release list --repo <owner>/<name>`). Ela sempre pode ser baixada, então a comparação em três vias sempre tem sua base.
 - Nada nessas pastas é executado, instalado ou compilado.
 
@@ -166,7 +166,7 @@ Aplique o modelo de três vias ao antigo, ao nosso e ao novo, e escreva o result
 | Arquivo | Regra |
 | --- | --- |
 | `resource/**`, `web/src/**`, `bridge/**`, `sql/**`, Lua e outro código-fonte | Três vias. Uma mudança local cujo código se moveu ou cujo contrato mudou é adaptada ao código novo; uma sem lugar é informada. |
-| `package.json` | O upstream novo, mais os acréscimos locais que ainda fazem sentido; as versões de `@aifivem/*` e `workspaces` mantêm a forma do seu servidor (veja a etapa de download). `version` termina na versão da nova release, senão a verificação de atualização continua avisando. |
+| `package.json` | O upstream novo, mais os acréscimos locais que ainda fazem sentido; as versões de `@aicore8/*` e `workspaces` mantêm a forma do seu servidor (veja a etapa de download). `version` termina na versão da nova release, senão a verificação de atualização continua avisando. |
 | `dist/`, `fxmanifest.lua`, `resource/server/tables.ts`, `data/schemas/*.schema.json` | Pegar o novo; o build gera de novo. |
 | `data/<file>.json` (conteúdo do painel) | Manter o nosso (veja abaixo). |
 | `data/secrets.json`, `data/*.json.bak` | Restaurar do backup sem alteração. |

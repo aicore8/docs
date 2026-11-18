@@ -13,7 +13,7 @@ Diese Seite ist für zwei Leser geschrieben: für dich und für den KI-Coding-Ag
 Öffne deinen Server-Datenordner in deinem Coding-Agenten und füge das hier ein, mit ausgefülltem Umfang:
 
 ```text
-Aktualisiere Skripte auf diesem AI-Core-Server nach https://aifivem.com/docs/update-a-script.md
+Aktualisiere Skripte auf diesem AI-Core-Server nach https://aicore8.com/docs/update-a-script.md
 Wenn dieser Ordner .claude/skills/aicore-script-update/ hat, lies seine SKILL.md und references: derselbe Ablauf.
 
 Umfang: <jedes veraltete ai-*-Skript und Paket | ai-inventory ai-garages | die Drittanbieter-Skripte in C:\pfad\zu\neuen-versionen>
@@ -35,7 +35,7 @@ Umfang: <jedes veraltete ai-*-Skript und Paket | ai-inventory ai-garages | die D
 ```
 
 <Callout>
-Jeder AI-Core-Server-Ordner enthält diesen Ablauf als Projekt-Skill in `.claude/skills/aicore-script-update/`: Das txAdmin-Recipe installiert ihn zusammen mit den Regeln, `tools/`, `docs/compat/`, `CLAUDE.md` und `AGENTS.md`, genau wie die Installation von Hand. Claude Code lädt ihn von selbst, wenn du "aktualisiere meine Skripte" oder "eine neue Version ist da" sagst; andere Agenten finden ihn über `AGENTS.md`. Einem Server, der mit einem älteren Recipe installiert wurde, können diese Dateien fehlen: Lade sie wie unter [Von Hand installieren](/de/docs/installation#von-hand-installieren) aus dem [aicore-server](https://github.com/aifivem/aicore-server)-Repository in deinen Server-Ordner und behalte deine eigenen cfg-Dateien.
+Jeder AI-Core-Server-Ordner enthält diesen Ablauf als Projekt-Skill in `.claude/skills/aicore-script-update/`: Das txAdmin-Recipe installiert ihn zusammen mit den Regeln, `tools/`, `docs/compat/`, `CLAUDE.md` und `AGENTS.md`, genau wie die Installation von Hand. Claude Code lädt ihn von selbst, wenn du "aktualisiere meine Skripte" oder "eine neue Version ist da" sagst; andere Agenten finden ihn über `AGENTS.md`. Einem Server, der mit einem älteren Recipe installiert wurde, können diese Dateien fehlen: Lade sie wie unter [Von Hand installieren](/de/docs/installation#von-hand-installieren) aus dem [aicore-server](https://github.com/aicore8/aicore-server)-Repository in deinen Server-Ordner und behalte deine eigenen cfg-Dateien.
 </Callout>
 
 ## Was dir bleibt
@@ -53,11 +53,11 @@ Jeder AI-Core-Server-Ordner enthält diesen Ablauf als Projekt-Skill in `.claude
 
 | Skript | Neue Version | Was du lieferst |
 | --- | --- | --- |
-| `ai-*`-Ressourcen in `resources/[ai]/` (ai-core, ai-lib, ai-mysql eingeschlossen) | Das GitHub-Release des Repositorys aus der `package.json` (`"repository": "github:aifivem/<name>"`) | Nichts |
-| Die `@aifivem/*`-Pakete in `packages/` (nur Entwicklungs-Setup) | npm (`npm view @aifivem/<pkg> version`) | Nichts |
+| `ai-*`-Ressourcen in `resources/[ai]/` (ai-core, ai-lib, ai-mysql eingeschlossen) | Das GitHub-Release des Repositorys aus der `package.json` (`"repository": "github:aicore8/<name>"`) | Nichts |
+| Die `@aicore8/*`-Pakete in `packages/` (nur Entwicklungs-Setup) | npm (`npm view @aicore8/<pkg> version`) | Nichts |
 | Jede andere Ressource (meist in `resources/[standalone]/`) | Der Anbieter | Den neuen Ordner oder die Zip |
 
-Ein mit dem Recipe installierter Server hat jedes `ai-*`-Skript als Release-Zip bekommen: Jedes Skript baut in seinem eigenen Ordner und holt die `@aifivem/*`-Pakete von npm. Ein Entwicklungs-Setup (`bun run setup`) hat `packages/` und baut jedes Skript aus dem Server-Ordner.
+Ein mit dem Recipe installierter Server hat jedes `ai-*`-Skript als Release-Zip bekommen: Jedes Skript baut in seinem eigenen Ordner und holt die `@aicore8/*`-Pakete von npm. Ein Entwicklungs-Setup (`bun run setup`) hat `packages/` und baut jedes Skript aus dem Server-Ordner.
 
 ai-core prüft jedes gestartete Skript mit GitHub-Repository (alle 6 Stunden pro Skript) und schreibt `<name> <current> is outdated: <latest> is out (<url>)` in die Konsole; dieselbe Liste steht auf dem Admin-Dashboard. Update-Prüfungen und die übersprungenen Skripte stellst du im [Admin-Panel](/de/docs/admin-panel) unter **General** ein (`updates.check`, `updates.ignore` in ai-cores `data/settings.json`).
 
@@ -143,7 +143,7 @@ unzip -q update/<name>/old/*.zip -d update/<name>/old/x
 ```
 
 - **Neues Upstream** ist das Release-Zip `<name>-<tag>.zip`: der Build und der Quellcode, oberster Ordner `<name>/`. Releases vor November 2026 hängen nur den Build an; nimm dann den Quellcode des Tags (oberster Ordner `<owner>-<name>-<sha>/`).
-- Die `package.json` des Release-Zips legt die `@aifivem/*`-Pakete fest (`^x.y.z` statt `workspace:*`) und fügt `"workspaces": ["web"]` hinzu. Das ist keine Änderung von dir: Lass diese Felder aus dem Drei-Wege-Vergleich heraus und behalte die Form deines Servers (Recipe-Installation: die des Zips; Entwicklungs-Setup: `workspace:*`, kein `workspaces`).
+- Die `package.json` des Release-Zips legt die `@aicore8/*`-Pakete fest (`^x.y.z` statt `workspace:*`) und fügt `"workspaces": ["web"]` hinzu. Das ist keine Änderung von dir: Lass diese Felder aus dem Drei-Wege-Vergleich heraus und behalte die Form deines Servers (Recipe-Installation: die des Zips; Entwicklungs-Setup: `workspace:*`, kein `workspaces`).
 - **Altes Upstream** ist der Tag der Version, die der Server nutzt (das Tag-Schema zeigt `gh release list --repo <owner>/<name>`). Er lässt sich immer herunterladen, also hat der Drei-Wege-Vergleich immer seine Basis.
 - Nichts in diesen Ordnern wird gestartet, installiert oder gebaut.
 
@@ -166,7 +166,7 @@ Wende das Drei-Wege-Modell auf alt, unseres und neu an und schreibe das Ergebnis
 | Datei | Regel |
 | --- | --- |
 | `resource/**`, `web/src/**`, `bridge/**`, `sql/**`, Lua und anderer Quellcode | Drei Wege. Eine lokale Änderung, deren Code verschoben wurde oder deren Vertrag sich geändert hat, wird an den neuen Code angepasst; eine ohne Platz mehr wird gemeldet. |
-| `package.json` | Neues Upstream plus lokale Ergänzungen, die noch sinnvoll sind; die `@aifivem/*`-Versionen und `workspaces` behalten die Form deines Servers (siehe den Download-Schritt). `version` endet bei der Version des neuen Releases, sonst warnt die Update-Prüfung weiter. |
+| `package.json` | Neues Upstream plus lokale Ergänzungen, die noch sinnvoll sind; die `@aicore8/*`-Versionen und `workspaces` behalten die Form deines Servers (siehe den Download-Schritt). `version` endet bei der Version des neuen Releases, sonst warnt die Update-Prüfung weiter. |
 | `dist/`, `fxmanifest.lua`, `resource/server/tables.ts`, `data/schemas/*.schema.json` | Neu nehmen; der Build erzeugt sie neu. |
 | `data/<file>.json` (Panel-Inhalt) | Unseres behalten (siehe unten). |
 | `data/secrets.json`, `data/*.json.bak` | Unverändert aus dem Backup zurückholen. |

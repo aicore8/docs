@@ -16,7 +16,7 @@ Dashboard panelu administratora ma sekcję **Recommended scripts**: darmowe skry
   - paliwo, drzwi, garaże, telefon i zgłoszenia policyjne (`dispatch.alert`) tak samo przechodzą przez swoje warstwy.
 - **Jeśli jego kategoria ma warstwę, ma w niej adapter.** Skrypt ekwipunku, kluczyków, ubrań, paliwa, zamków drzwi, garażu, telefonu, dispatchu, banku, rachunków lub medyczny potrzebuje adaptera w tej warstwie, żeby inne skrypty do niego trafiały. Skrypt, który odpowiada na API już czytane przez warstwę, potrzebuje mniej: skrypt paliwa z eksportami klienta w stylu LegacyFuel `GetFuel(vehicle)` / `SetFuel(vehicle, level)` to jedna linia na liście warstwy paliwa.
 
-Warstwy i obsługiwane przez nie skrypty: [Warstwy i most](/pl/docs/developers/layers), [Kompatybilność](/pl/docs/compatibility) oraz jedna notatka na warstwę w [`docs/compat/`](https://github.com/aifivem/aicore-server/tree/main/docs/compat) repozytorium serwera.
+Warstwy i obsługiwane przez nie skrypty: [Warstwy i most](/pl/docs/developers/layers), [Kompatybilność](/pl/docs/compatibility) oraz jedna notatka na warstwę w [`docs/compat/`](https://github.com/aicore8/aicore-server/tree/main/docs/compat) repozytorium serwera.
 
 ## Jak trafić na listę
 
@@ -25,7 +25,7 @@ Warstwy i obsługiwane przez nie skrypty: [Warstwy i most](/pl/docs/developers/l
 
 ### Dodaj wpis
 
-Zrób fork [aifivem/ai-core](https://github.com/aifivem/ai-core) i dodaj jeden wpis do listy `RECOMMENDATIONS` w `resource/server/recommendations/index.ts`:
+Zrób fork [aicore8/ai-core](https://github.com/aicore8/ai-core) i dodaj jeden wpis do listy `RECOMMENDATIONS` w `resource/server/recommendations/index.ts`:
 
 ```ts
 {
@@ -73,7 +73,7 @@ W tym samym pull requeście:
 - plik adaptera w folderze `adapters/` warstwy: `resource/server/<layer>/adapters/<resource>.ts`, plus `resource/client/<layer>/adapters/<resource>.ts`, gdy skrypt ma tylko API klienta. Skopiuj adapter podobnego skryptu;
 - jego linię na liście adapterów warstwy: `resource/server/<layer>/registry.ts` albo `index.ts` warstwy, gdy nie ma ona `registry.ts` (phone, medical, prison, world).
 
-Potem otwórz drugi pull request do [aifivem/aicore-server](https://github.com/aifivem/aicore-server), który dopisuje skrypt do notatki warstwy `docs/compat/<layer>.md` (na przykład `vehicle-keys.md`, `phone.md`): testowana wersja, status i znane ograniczenia.
+Potem otwórz drugi pull request do [aicore8/aicore-server](https://github.com/aicore8/aicore-server), który dopisuje skrypt do notatki warstwy `docs/compat/<layer>.md` (na przykład `vehicle-keys.md`, `phone.md`): testowana wersja, status i znane ograniczenia.
 
 </Step>
 <Step>

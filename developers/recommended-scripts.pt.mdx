@@ -16,7 +16,7 @@ O dashboard do painel de administração tem uma seção **Recommended scripts**
   - combustível, portas, garagens, o celular e alertas policiais (`dispatch.alert`) passam pelas suas camadas do mesmo jeito.
 - **Se a categoria tem uma camada, ele tem um adaptador nela.** Um script de inventário, chaves de veículo, roupas, combustível, trancas de porta, garagem, celular, dispatch, banco, faturas ou médico precisa de um adaptador nessa camada, para que os outros scripts cheguem até ele. Um script que responde a uma API que a camada já lê precisa de menos: um script de combustível com exports de cliente no estilo LegacyFuel `GetFuel(vehicle)` / `SetFuel(vehicle, level)` é uma linha na lista da camada de combustível.
 
-As camadas e os scripts que elas suportam: [Camadas e a ponte](/pt/docs/developers/layers), [Compatibilidade](/pt/docs/compatibility), e uma nota por camada em [`docs/compat/`](https://github.com/aifivem/aicore-server/tree/main/docs/compat) do repositório do servidor.
+As camadas e os scripts que elas suportam: [Camadas e a ponte](/pt/docs/developers/layers), [Compatibilidade](/pt/docs/compatibility), e uma nota por camada em [`docs/compat/`](https://github.com/aicore8/aicore-server/tree/main/docs/compat) do repositório do servidor.
 
 ## Entrar na lista
 
@@ -25,7 +25,7 @@ As camadas e os scripts que elas suportam: [Camadas e a ponte](/pt/docs/develope
 
 ### Adicione a entrada
 
-Faça um fork de [aifivem/ai-core](https://github.com/aifivem/ai-core) e adicione uma entrada à lista `RECOMMENDATIONS` em `resource/server/recommendations/index.ts`:
+Faça um fork de [aicore8/ai-core](https://github.com/aicore8/ai-core) e adicione uma entrada à lista `RECOMMENDATIONS` em `resource/server/recommendations/index.ts`:
 
 ```ts
 {
@@ -73,7 +73,7 @@ No mesmo pull request:
 - o arquivo do adaptador na pasta `adapters/` da camada: `resource/server/<layer>/adapters/<resource>.ts`, mais `resource/client/<layer>/adapters/<resource>.ts` quando o script só tem uma API de cliente. Copie o adaptador de um script parecido;
 - a linha dele na lista de adaptadores da camada: `resource/server/<layer>/registry.ts`, ou o `index.ts` da camada quando ela não tem `registry.ts` (phone, medical, prison, world).
 
-Depois abra um segundo pull request em [aifivem/aicore-server](https://github.com/aifivem/aicore-server) que adicione o script à nota da camada `docs/compat/<layer>.md` (por exemplo `vehicle-keys.md`, `phone.md`): versão testada, status e limites conhecidos.
+Depois abra um segundo pull request em [aicore8/aicore-server](https://github.com/aicore8/aicore-server) que adicione o script à nota da camada `docs/compat/<layer>.md` (por exemplo `vehicle-keys.md`, `phone.md`): versão testada, status e limites conhecidos.
 
 </Step>
 <Step>

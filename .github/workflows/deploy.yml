@@ -1,6 +1,6 @@
 name: Deploy site
 
-# A merge into main rebuilds aifivem.com, which pulls these docs at build time.
+# A merge into main rebuilds aicore8.com, which pulls these docs at build time.
 on:
   push:
     branches: [main]
@@ -9,7 +9,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger the aifivem.com build
+      - name: Trigger the aicore8.com build
         env:
           HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
         run: |

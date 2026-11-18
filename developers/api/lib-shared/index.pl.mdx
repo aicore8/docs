@@ -1,6 +1,6 @@
 ---
 title: "Lib: shared i fivem"
-description: "@aifivem/lib/shared i /fivem: funkcje pomocnicze działające po obu stronach, do czego służy każde wejście i każda strona tematyczna."
+description: "@aicore8/lib/shared i /fivem: funkcje pomocnicze działające po obu stronach, do czego służy każde wejście i każda strona tematyczna."
 icon: Share2
 ---
 
@@ -8,14 +8,14 @@ Dwie części liba działają tak samo na kliencie i na serwerze:
 
 | Wejście | Co zawiera | Gdzie możesz go użyć |
 | --- | --- | --- |
-| `@aifivem/lib/shared` | Zwykłe funkcje pomocnicze, które nigdy nie wywołują natywki FiveM: odmowy, czytniki wejścia, formatowanie liczb i tekstu, matematyka wektorów, geometria stref, czytniki danych panelu, teksty językowe strony NUI. | Klient, serwer, `resource/common/` i kod NUI (React). |
-| `@aifivem/lib/fivem` | Funkcje pomocnicze wywołujące natywki dostępne po obu stronach: eksporty między zasobami, harmonogram, obsługa zatrzymania zasobu, loader plików językowych. | Klient, serwer i `resource/common/`. Nie w kodzie NUI. |
+| `@aicore8/lib/shared` | Zwykłe funkcje pomocnicze, które nigdy nie wywołują natywki FiveM: odmowy, czytniki wejścia, formatowanie liczb i tekstu, matematyka wektorów, geometria stref, czytniki danych panelu, teksty językowe strony NUI. | Klient, serwer, `resource/common/` i kod NUI (React). |
+| `@aicore8/lib/fivem` | Funkcje pomocnicze wywołujące natywki dostępne po obu stronach: eksporty między zasobami, harmonogram, obsługa zatrzymania zasobu, loader plików językowych. | Klient, serwer i `resource/common/`. Nie w kodzie NUI. |
 
-Wejścia klienta i serwera ponownie eksportują wszystko z `/fivem`, więc w pliku klienta lub serwera możesz importować te funkcje także z `@aifivem/lib/client` albo `@aifivem/lib/server`. Używaj `/fivem` tylko w plikach `resource/common/`, które budują obie strony.
+Wejścia klienta i serwera ponownie eksportują wszystko z `/fivem`, więc w pliku klienta lub serwera możesz importować te funkcje także z `@aicore8/lib/client` albo `@aicore8/lib/server`. Używaj `/fivem` tylko w plikach `resource/common/`, które budują obie strony.
 
 ```ts title="TypeScript"
-import { fail, readInt, groupDigits } from "@aifivem/lib/shared";
-import { resourceExport, every, createLocale } from "@aifivem/lib/fivem";
+import { fail, readInt, groupDigits } from "@aicore8/lib/shared";
+import { resourceExport, every, createLocale } from "@aicore8/lib/fivem";
 ```
 
 ## Lua

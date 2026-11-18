@@ -16,7 +16,7 @@ The admin panel's dashboard has a **Recommended scripts** section: free scripts 
   - fuel, doors, garages, the phone and police alerts (`dispatch.alert`) go through their layers the same way.
 - **If its category has a layer, it has an adapter there.** An inventory, vehicle keys, clothing, fuel, door lock, garage, phone, dispatch, banking, billing or medical script needs an adapter in that layer, so the other scripts reach it. A script that answers an API the layer already reads needs less: a fuel script with LegacyFuel-style client exports `GetFuel(vehicle)` / `SetFuel(vehicle, level)` is one line in the fuel layer's list.
 
-The layers and the scripts they support: [Layers and the bridge](/docs/developers/layers), [Compatibility](/docs/compatibility), and one note per layer in [`docs/compat/`](https://github.com/aifivem/aicore-server/tree/main/docs/compat) of the server repository.
+The layers and the scripts they support: [Layers and the bridge](/docs/developers/layers), [Compatibility](/docs/compatibility), and one note per layer in [`docs/compat/`](https://github.com/aicore8/aicore-server/tree/main/docs/compat) of the server repository.
 
 ## Getting listed
 
@@ -25,7 +25,7 @@ The layers and the scripts they support: [Layers and the bridge](/docs/developer
 
 ### Add the entry
 
-Fork [aifivem/ai-core](https://github.com/aifivem/ai-core) and add one entry to the `RECOMMENDATIONS` list in `resource/server/recommendations/index.ts`:
+Fork [aicore8/ai-core](https://github.com/aicore8/ai-core) and add one entry to the `RECOMMENDATIONS` list in `resource/server/recommendations/index.ts`:
 
 ```ts
 {
@@ -73,7 +73,7 @@ In the same pull request:
 - the adapter file in the layer's `adapters/` folder: `resource/server/<layer>/adapters/<resource>.ts`, plus `resource/client/<layer>/adapters/<resource>.ts` when the script has only a client API. Copy the adapter of a similar script;
 - its line in the layer's adapter list: `resource/server/<layer>/registry.ts`, or the layer's `index.ts` when it has no `registry.ts` (phone, medical, prison, world).
 
-Then open a second pull request to [aifivem/aicore-server](https://github.com/aifivem/aicore-server) that adds the script to the layer's note `docs/compat/<layer>.md` (for example `vehicle-keys.md`, `phone.md`): tested version, status and known limits.
+Then open a second pull request to [aicore8/aicore-server](https://github.com/aicore8/aicore-server) that adds the script to the layer's note `docs/compat/<layer>.md` (for example `vehicle-keys.md`, `phone.md`): tested version, status and known limits.
 
 </Step>
 <Step>

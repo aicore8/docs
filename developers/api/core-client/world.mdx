@@ -39,7 +39,7 @@ Nothing. A `reason` that is not a string is ignored.
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts title="resource/client/interior.ts"
-import { world } from "@aifivem/lib/client";
+import { world } from "@aicore8/lib/client";
 
 // A dark, clear night inside a custom interior, back to the server's weather on leaving.
 export function enterInterior(): void {
@@ -132,8 +132,8 @@ None.
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts title="resource/client/weather.ts"
-import { resourceExport } from "@aifivem/lib/client";
-import { CORE } from "@aifivem/shared";
+import { resourceExport } from "@aicore8/lib/client";
+import { CORE } from "@aicore8/shared";
 
 const core = resourceExport("ai-core");
 

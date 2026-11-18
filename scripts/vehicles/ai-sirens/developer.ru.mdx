@@ -10,7 +10,7 @@ icon: Code
 Изменения (тон, сирена) запрашиваются у сервера, который принимает их только от водителя. Вызывайте сеттеры на клиенте водителя. Огни (`SetLights`, `ToggleLights`) являются собственным состоянием огней сирены игры на этом клиенте.
 </Callout>
 
-Lua вызывает их как `exports['ai-sirens']:Name(...)`. Они не типизированы в `@aifivem/shared`: в TypeScript используйте `callExport("ai-sirens", "Name", ...args)` из `@aifivem/lib/client`.
+Lua вызывает их как `exports['ai-sirens']:Name(...)`. Они не типизированы в `@aicore8/shared`: в TypeScript используйте `callExport("ai-sirens", "Name", ...args)` из `@aicore8/lib/client`.
 
 ## Клиентские экспорты
 
@@ -91,7 +91,7 @@ local ok = exports['ai-sirens']:SetSirenTone(nil, 2)
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { callExport } from "@aifivem/lib/client";
+import { callExport } from "@aicore8/lib/client";
 
 // Скрипт погони: тон 2, когда начинается погоня.
 export function startPursuit(): void {

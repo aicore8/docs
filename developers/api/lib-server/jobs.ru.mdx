@@ -5,7 +5,7 @@ icon: Siren
 ---
 
 ```ts title="TypeScript"
-import { jobs, dispatch, prison, mdt, ems, medical, stress, needs, definitions, isPrimeTime } from "@aifivem/lib/server";
+import { jobs, dispatch, prison, mdt, ems, medical, stress, needs, definitions, isPrimeTime } from "@aicore8/lib/server";
 ```
 
 `jobs` и `definitions` - это сам ai-core: работы и банды персонажа и определения работ сервера. Всё остальное здесь идёт через один из слоёв ai-core, где отвечает скрипт, который сервер держит для этой задачи (система вызовов, тюрьма, MDT, скрипт смерти, HUD). Ваш скрипт продолжит работать, когда владелец его заменит. Пока такого скрипта нет, эти вызовы тихо не срабатывают (`false`, `0`, `null`).
@@ -37,7 +37,7 @@ local current = aiLib.jobs.current(source)
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { jobs } from "@aifivem/lib/server";
+import { jobs } from "@aicore8/lib/server";
 
 export function isOfficer(source: number): boolean {
   return jobs.current(source)?.job === "police";
@@ -132,7 +132,7 @@ local ok = aiLib.jobs.set(source, job, grade)
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { jobs, notify } from "@aifivem/lib/server";
+import { jobs, notify } from "@aicore8/lib/server";
 
 export function hire(source: number, job: string): void {
   if (!jobs.set(source, job, 0)) return notify(source, "Не удалось принять на работу", "error");
@@ -305,7 +305,7 @@ local ok = aiLib.dispatch.alert(alert)
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { dispatch, coordsOf, createLocale } from "@aifivem/lib/server";
+import { dispatch, coordsOf, createLocale } from "@aicore8/lib/server";
 
 const Locale = createLocale();
 
@@ -858,7 +858,7 @@ local ok = aiLib.definitions.removeJob(name)
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { definitions } from "@aifivem/lib/server";
+import { definitions } from "@aicore8/lib/server";
 
 // Один раз при запуске: работа существует, пока работает этот ресурс.
 const result = definitions.registerJob("garbage", {

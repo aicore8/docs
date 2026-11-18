@@ -16,7 +16,7 @@ icon: Lightbulb
   - топливо, двери, гаражи, телефон и вызовы полиции (`dispatch.alert`) так же идут через свои слои.
 - **Если у его категории есть слой, у него там есть адаптер.** Скрипту инвентаря, ключей, одежды, топлива, дверных замков, гаража, телефона, диспетчерской, банка, счетов или медицины нужен адаптер в этом слое, чтобы другие скрипты до него доходили. Скрипту, который отвечает на API, уже читаемое слоем, нужно меньше: скрипт топлива с клиентскими экспортами в стиле LegacyFuel `GetFuel(vehicle)` / `SetFuel(vehicle, level)` — это одна строка в списке слоя топлива.
 
-Слои и скрипты, которые они поддерживают: [Слои и мост](/ru/docs/developers/layers), [Совместимость](/ru/docs/compatibility) и по одной заметке на слой в [`docs/compat/`](https://github.com/aifivem/aicore-server/tree/main/docs/compat) репозитория сервера.
+Слои и скрипты, которые они поддерживают: [Слои и мост](/ru/docs/developers/layers), [Совместимость](/ru/docs/compatibility) и по одной заметке на слой в [`docs/compat/`](https://github.com/aicore8/aicore-server/tree/main/docs/compat) репозитория сервера.
 
 ## Как попасть в список
 
@@ -25,7 +25,7 @@ icon: Lightbulb
 
 ### Добавьте запись
 
-Сделайте форк [aifivem/ai-core](https://github.com/aifivem/ai-core) и добавьте одну запись в список `RECOMMENDATIONS` в `resource/server/recommendations/index.ts`:
+Сделайте форк [aicore8/ai-core](https://github.com/aicore8/ai-core) и добавьте одну запись в список `RECOMMENDATIONS` в `resource/server/recommendations/index.ts`:
 
 ```ts
 {
@@ -73,7 +73,7 @@ AI Core заново проверяет условия, когда ресурс 
 - файл адаптера в папке `adapters/` слоя: `resource/server/<layer>/adapters/<resource>.ts`, плюс `resource/client/<layer>/adapters/<resource>.ts`, если у скрипта есть только клиентский API. Скопируйте адаптер похожего скрипта;
 - его строку в списке адаптеров слоя: `resource/server/<layer>/registry.ts` или `index.ts` слоя, если у него нет `registry.ts` (phone, medical, prison, world).
 
-Затем откройте второй pull request в [aifivem/aicore-server](https://github.com/aifivem/aicore-server), который добавляет скрипт в заметку слоя `docs/compat/<layer>.md` (например, `vehicle-keys.md`, `phone.md`): проверенная версия, статус и известные ограничения.
+Затем откройте второй pull request в [aicore8/aicore-server](https://github.com/aicore8/aicore-server), который добавляет скрипт в заметку слоя `docs/compat/<layer>.md` (например, `vehicle-keys.md`, `phone.md`): проверенная версия, статус и известные ограничения.
 
 </Step>
 <Step>

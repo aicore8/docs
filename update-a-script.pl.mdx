@@ -13,7 +13,7 @@ Ta strona jest napisana dla dwóch czytelników: dla ciebie i dla agenta AI do k
 Otwórz folder danych serwera w swoim agencie do kodowania i wklej to, uzupełniając zakres:
 
 ```text
-Zaktualizuj skrypty na tym serwerze AI Core zgodnie z https://aifivem.com/docs/update-a-script.md
+Zaktualizuj skrypty na tym serwerze AI Core zgodnie z https://aicore8.com/docs/update-a-script.md
 Jeśli ten folder ma .claude/skills/aicore-script-update/, przeczytaj jego SKILL.md i references: to ta sama procedura.
 
 Zakres: <każdy nieaktualny skrypt ai-* i pakiet | ai-inventory ai-garages | skrypty innych firm w C:\sciezka\do\nowych-wersji>
@@ -35,7 +35,7 @@ Zakres: <każdy nieaktualny skrypt ai-* i pakiet | ai-inventory ai-garages | skr
 ```
 
 <Callout>
-Każdy folder serwera AI Core zawiera tę procedurę jako skill projektu w `.claude/skills/aicore-script-update/`: recipe txAdmin instaluje go razem z zasadami, `tools/`, `docs/compat/`, `CLAUDE.md` i `AGENTS.md`, tak samo jak instalacja ręczna. Claude Code ładuje go sam, gdy powiesz "zaktualizuj moje skrypty" albo "wyszła nowa wersja"; inne agenty znajdują go przez `AGENTS.md`. Serwer zainstalowany starszym recipe może nie mieć tych plików: pobierz je z repozytorium [aicore-server](https://github.com/aifivem/aicore-server) do folderu serwera jak w [Instalacji ręcznej](/pl/docs/installation#instalacja-ręczna), zachowując własne pliki cfg.
+Każdy folder serwera AI Core zawiera tę procedurę jako skill projektu w `.claude/skills/aicore-script-update/`: recipe txAdmin instaluje go razem z zasadami, `tools/`, `docs/compat/`, `CLAUDE.md` i `AGENTS.md`, tak samo jak instalacja ręczna. Claude Code ładuje go sam, gdy powiesz "zaktualizuj moje skrypty" albo "wyszła nowa wersja"; inne agenty znajdują go przez `AGENTS.md`. Serwer zainstalowany starszym recipe może nie mieć tych plików: pobierz je z repozytorium [aicore-server](https://github.com/aicore8/aicore-server) do folderu serwera jak w [Instalacji ręcznej](/pl/docs/installation#instalacja-ręczna), zachowując własne pliki cfg.
 </Callout>
 
 ## Co zostaje twoje
@@ -53,11 +53,11 @@ Każdy folder serwera AI Core zawiera tę procedurę jako skill projektu w `.cla
 
 | Skrypt | Nowa wersja | Co dajesz |
 | --- | --- | --- |
-| Zasoby `ai-*` w `resources/[ai]/` (łącznie z ai-core, ai-lib i ai-mysql) | Wydanie na GitHubie repozytorium podanego w jego `package.json` (`"repository": "github:aifivem/<name>"`) | Nic |
-| Pakiety `@aifivem/*` w `packages/` (tylko instalacja deweloperska) | npm (`npm view @aifivem/<pkg> version`) | Nic |
+| Zasoby `ai-*` w `resources/[ai]/` (łącznie z ai-core, ai-lib i ai-mysql) | Wydanie na GitHubie repozytorium podanego w jego `package.json` (`"repository": "github:aicore8/<name>"`) | Nic |
+| Pakiety `@aicore8/*` w `packages/` (tylko instalacja deweloperska) | npm (`npm view @aicore8/<pkg> version`) | Nic |
 | Każdy inny zasób (zwykle w `resources/[standalone]/`) | Dostawca | Nowy folder albo zip |
 
-Serwer zainstalowany przepisem dostał każdy skrypt `ai-*` jako zip jego wydania: każdy skrypt buduje się we własnym folderze i bierze pakiety `@aifivem/*` z npm. Instalacja deweloperska (`bun run setup`) ma `packages/` i buduje każdy skrypt z folderu serwera.
+Serwer zainstalowany przepisem dostał każdy skrypt `ai-*` jako zip jego wydania: każdy skrypt buduje się we własnym folderze i bierze pakiety `@aicore8/*` z npm. Instalacja deweloperska (`bun run setup`) ma `packages/` i buduje każdy skrypt z folderu serwera.
 
 ai-core sprawdza każdy uruchomiony skrypt z repozytorium na GitHubie (co 6 godzin dla każdego skryptu) i wypisuje w konsoli `<name> <current> is outdated: <latest> is out (<url>)`; ta sama lista jest na dashboardzie admina. Sprawdzanie aktualizacji i pomijane skrypty ustawiasz w [panelu administratora](/pl/docs/admin-panel) w zakładce **General** (`updates.check`, `updates.ignore` w `data/settings.json` ai-core).
 
@@ -143,7 +143,7 @@ unzip -q update/<name>/old/*.zip -d update/<name>/old/x
 ```
 
 - **Nowy upstream** to zip wydania `<name>-<tag>.zip`: build i źródła, górny folder `<name>/`. Wydania sprzed listopada 2026 dołączają tylko build; wtedy weź źródła tagu (górny folder `<owner>-<name>-<sha>/`).
-- `package.json` w zipie wydania przypina pakiety `@aifivem/*` (`^x.y.z` zamiast `workspace:*`) i dodaje `"workspaces": ["web"]`. To nie jest twoja zmiana: zostaw te pola poza porównaniem trójstronnym i zachowaj formę swojego serwera (instalacja przepisem: ta z zipa; instalacja deweloperska: `workspace:*`, bez `workspaces`).
+- `package.json` w zipie wydania przypina pakiety `@aicore8/*` (`^x.y.z` zamiast `workspace:*`) i dodaje `"workspaces": ["web"]`. To nie jest twoja zmiana: zostaw te pola poza porównaniem trójstronnym i zachowaj formę swojego serwera (instalacja przepisem: ta z zipa; instalacja deweloperska: `workspace:*`, bez `workspaces`).
 - **Stary upstream** to tag wersji, której używa serwer (styl tagów pokazuje `gh release list --repo <owner>/<name>`). Zawsze da się go pobrać, więc porównanie trójstronne zawsze ma swoją bazę.
 - Nic w tych folderach nie jest uruchamiane, instalowane ani budowane.
 
@@ -166,7 +166,7 @@ Zastosuj model trójstronny do starego, naszego i nowego, a wynik zapisz w folde
 | Plik | Zasada |
 | --- | --- |
 | `resource/**`, `web/src/**`, `bridge/**`, `sql/**`, Lua i inne źródła | Trójstronnie. Lokalna zmiana, której kod się przeniósł albo której kontrakt się zmienił, jest dopasowywana do nowego kodu; zmiana bez miejsca trafia do raportu. |
-| `package.json` | Nowy upstream plus lokalne dodatki, które nadal mają sens; wersje `@aifivem/*` i `workspaces` zachowują formę twojego serwera (zobacz krok pobierania). `version` kończy na wersji nowego wydania, inaczej sprawdzanie aktualizacji dalej ostrzega. |
+| `package.json` | Nowy upstream plus lokalne dodatki, które nadal mają sens; wersje `@aicore8/*` i `workspaces` zachowują formę twojego serwera (zobacz krok pobierania). `version` kończy na wersji nowego wydania, inaczej sprawdzanie aktualizacji dalej ostrzega. |
 | `dist/`, `fxmanifest.lua`, `resource/server/tables.ts`, `data/schemas/*.schema.json` | Weź nowe; build generuje je od nowa. |
 | `data/<file>.json` (zawartość panelu) | Zostaw nasz (patrz niżej). |
 | `data/secrets.json`, `data/*.json.bak` | Przywróć z kopii bez zmian. |

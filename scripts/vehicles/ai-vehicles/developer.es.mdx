@@ -4,10 +4,10 @@ description: Exports de servidor, state bags y eventos de ai-vehicles, y la API 
 icon: Code
 ---
 
-ai-vehicles solo tiene exports de servidor. La mayoría son síncronos (sin Promise, sin esperas en Lua); los que pueden leer la base de datos - `FindVehicle`, `GetVehiclesOf`, `SetPlate`, `DeleteVehicleByPlate`, `AdoptVehicle` - y `SpawnVehicle` responden con un callback. Los tipos están en `@aifivem/shared` (`vehicles.ts`).
+ai-vehicles solo tiene exports de servidor. La mayoría son síncronos (sin Promise, sin esperas en Lua); los que pueden leer la base de datos - `FindVehicle`, `GetVehiclesOf`, `SetPlate`, `DeleteVehicleByPlate`, `AdoptVehicle` - y `SpawnVehicle` responden con un callback. Los tipos están en `@aicore8/shared` (`vehicles.ts`).
 
 ```ts title="TypeScript"
-import { resourceExport } from "@aifivem/lib/server";
+import { resourceExport } from "@aicore8/lib/server";
 const vehicles = resourceExport("ai-vehicles");
 ```
 
@@ -42,7 +42,7 @@ Lo que devuelven `GetVehicle` y `GetVehicles`.
     plate: { type: 'string', description: 'La matrícula, `AI` y seis caracteres, hecha a partir del id.', required: true },
     owner: { type: 'VehicleOwner', description: 'Quién es su dueño.', required: true },
     model: { type: 'string', description: 'El nombre del modelo en minúsculas (`"sultan"`).', required: true },
-    props: { type: 'VehicleProps | null', description: 'El aspecto y el tuning guardados (`VehicleProps` de `@aifivem/lib/shared`). `null` hasta el primer guardado.', required: true },
+    props: { type: 'VehicleProps | null', description: 'El aspecto y el tuning guardados (`VehicleProps` de `@aicore8/lib/shared`). `null` hasta el primer guardado.', required: true },
     setup: { type: 'VehicleSetup | null', description: 'Un aspecto con el que aparece el vehículo mientras no tiene props (un color elegido en el concesionario). Se borra con el primer guardado de props.', required: true },
     state: { type: '"garage" | "out" | "impound"', description: 'Aparcado, en el mundo o esperando en el depósito.', required: true },
     garage: { type: 'string | null', description: 'El id del garaje en el que está aparcado. `null` mientras está fuera, o para un vehículo de flota que aparece en todos los garajes de su trabajo o banda.', required: true },
@@ -114,7 +114,7 @@ local created = exports['ai-vehicles']:CreateVehicle(owner, model, garage, props
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { resourceExport } from "@aifivem/lib/server";
+import { resourceExport } from "@aicore8/lib/server";
 
 const core = resourceExport("ai-core");
 const vehicles = resourceExport("ai-vehicles");
@@ -350,7 +350,7 @@ Nada. `done` recibe un [OwnedVehicle](#ownedvehicle) o `null`.
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { resourceExport } from "@aifivem/lib/server";
+import { resourceExport } from "@aicore8/lib/server";
 
 const vehicles = resourceExport("ai-vehicles");
 
@@ -416,7 +416,7 @@ Nada. `done` recibe un array de [OwnedVehicle](#ownedvehicle).
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { characters, resourceExport } from "@aifivem/lib/server";
+import { characters, resourceExport } from "@aicore8/lib/server";
 
 const vehicles = resourceExport("ai-vehicles");
 
@@ -665,7 +665,7 @@ Nada. `done` recibe un [DeleteByPlateResult](#deletebyplateresult): `{ ok: true,
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { resourceExport } from "@aifivem/lib/server";
+import { resourceExport } from "@aicore8/lib/server";
 
 const vehicles = resourceExport("ai-vehicles");
 
@@ -722,7 +722,7 @@ Nada. `done` recibe un [AdoptVehicleResult](#adoptvehicleresult): `{ ok: true, i
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { resourceExport, triggerClientCallback } from "@aifivem/lib/server";
+import { resourceExport, triggerClientCallback } from "@aicore8/lib/server";
 
 const vehicles = resourceExport("ai-vehicles");
 
@@ -781,7 +781,7 @@ Nada. `cb` recibe el network id, o `null` cuando el vehículo no existe, ya est�
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { resourceExport } from "@aifivem/lib/server";
+import { resourceExport } from "@aicore8/lib/server";
 
 const vehicles = resourceExport("ai-vehicles");
 
@@ -817,7 +817,7 @@ Un vehículo que ya está fuera se rechaza (`cb(null)`). Si su entidad desaparec
 
 ### ai-vehicles:owners
 
-Se dispara cuando entran vehículos en la memoria de ai-vehicles o cambian de dueño, y cuando las matrículas salen de la memoria. Un lote por tick del servidor. Lee `GetPlateOwners` una vez al iniciar y después aplica estos lotes para mantener una copia de matrícula a dueño. El nombre es `VEHICLES_EVENTS.owners` en `@aifivem/shared`.
+Se dispara cuando entran vehículos en la memoria de ai-vehicles o cambian de dueño, y cuando las matrículas salen de la memoria. Un lote por tick del servidor. Lee `GetPlateOwners` una vez al iniciar y después aplica estos lotes para mantener una copia de matrícula a dueño. El nombre es `VEHICLES_EVENTS.owners` en `@aicore8/shared`.
 
 **Lado:** Servidor (evento local, no se envía a los clientes)
 
@@ -831,8 +831,8 @@ Se dispara cuando entran vehículos en la memoria de ai-vehicles o cambian de du
 <Tabs items={['TypeScript', 'Lua']}>
 <Tab value="TypeScript">
 ```ts
-import { resourceExport } from "@aifivem/lib/server";
-import { VEHICLES_EVENTS } from "@aifivem/shared";
+import { resourceExport } from "@aicore8/lib/server";
+import { VEHICLES_EVENTS } from "@aicore8/shared";
 
 const owners = new Map<string, string>();
 for (const [plate, type, id] of resourceExport("ai-vehicles").GetPlateOwners())
@@ -861,7 +861,7 @@ end)
 
 ## State bags
 
-ai-vehicles los fija en cada vehículo en propiedad que hace aparecer. Los nombres están en `VEHICLE_BAGS` (`@aifivem/shared`).
+ai-vehicles los fija en cada vehículo en propiedad que hace aparecer. Los nombres están en `VEHICLE_BAGS` (`@aicore8/shared`).
 
 | Bag | Tipo | Significado |
 | --- | --- | --- |
